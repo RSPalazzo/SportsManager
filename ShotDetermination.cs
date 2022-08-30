@@ -4,13 +4,16 @@ namespace SportsManager
 {
     class ShotDeterminer 
     {
-        public int getShotDifficulty ()
+        GolfCourse course = new GolfCourse();
+        string lieName;
+        string locationName;
+        public int getShotDifficulty (int holeNumber, int par, int holeShotNumber, int distanceToHole)
         {
             int weather = getWeatherRating();
-            int lie = getLieRating();
-            int location = getLocationRating();
+            int lie = getLieRating(holeShotNumber);
+            int location = getLocationRating(holeShotNumber);
             int grass = getGrassRating();
-            int club = getClubRating();
+            int club = getClubRating(holeShotNumber);
             int shotType = getShotTypeRating();
             int shotTraj = getShotTrajRating();
             
@@ -28,98 +31,129 @@ namespace SportsManager
             int weatherRating = (wind + rain + altitude + temp);   
             return weatherRating;      
         }
-        int getLieRating()
+        int getLieRating(int shotNum)
         {
             int lieRating;
-            Random rand = new Random();
-            int lie = rand.Next (0, 11);
+            int lie;
+            if (shotNum == 1) {
+               lie = 12;
+            }
+            else{ 
+                Random rand = new Random();
+                lie = rand.Next (0, 11);
+            }
             switch (lie){
                 case 0:
                     lieRating = 30;
+                    lieName = "Grain With";
                     break;
                 case 1:
                     lieRating = 40;
+                    lieName = "Grain Against";
                     break;
                 case 2:
                     lieRating = 50;
+                    lieName = "Tight";
                     break;
                 case 3:
                     lieRating = 60;
+                    lieName = "Fluffy";
                     break;
                 case 4:
                     lieRating = 150;
+                    lieName = "Buried";
                     break;
                 case 5:
                     lieRating = 200;
+                    lieName = "Fried Egg";
                     break;
                 case 6:
                     lieRating = 5000;
+                    lieName = "Unplayable";
                     break;
                 case 7:
                     lieRating = 120;
+                    lieName = "Downhill";
                     break;
                 case 8:
                     lieRating = 90;
+                    lieName = "Uphill";
                     break;
                 case 9:
                     lieRating = 100;
+                    lieName = "Ball Above Feet";
                     break;
                 case 10:
                     lieRating = 140;
+                    lieName = "Ball Below Feet";
                     break;
                 case 11:
-                    lieRating = 100; 
+                    lieRating = 100;
+                    lieName = "Divot";
                     break;
                 default:
                     lieRating = 0;
+                    lieName = "Tee";
                     break;
             }
             return lieRating;
         }
-        int getLocationRating()
+        int getLocationRating(int shotNum)
         {
             int locationRating;
-            Random rand = new Random();
-            int location = rand.Next (0, 11);
+            int location;
+            if (shotNum == 1) {
+                location = 12;
+            }
+            else{ 
+                Random rand = new Random();
+                location = rand.Next (0, 9);
+            }
+
             switch (location){
                 case 0:
                     locationRating = 30;
+                    locationName = "Fairway";
                     break;
                 case 1:
                     locationRating = 50;
+                    locationName = "First Cut";
                     break;
                 case 2:
                     locationRating = 100;
+                    locationName = "Rough";
                     break;
                 case 3:
                     locationRating = 200;
+                    locationName = "Deep Rough";
                     break;
                 case 4:
                     locationRating = 100;
+                    locationName = "Pinestraw";
                     break;
                 case 5:
                     locationRating = 130;
+                    locationName = "Mulch";
                     break;
                 case 6:
                     locationRating = 150;
+                    locationName = "Sand";
                     break;
                 case 7:
                     locationRating = 200;
+                    locationName = "Cart Path";
                     break;
                 case 8:
                     locationRating = 250;
+                    locationName = "Obsucted";
                     break;
                 case 9:
                     locationRating = 250;
-                    break;
-                case 10:
-                    locationRating = 170;
-                    break;
-                case 11:
-                    locationRating = 220; 
+                    locationName = "Behind Something";
                     break;
                 default:
                     locationRating = 0;
+                    locationName = "Tee"; 
                     break;
             }
             return locationRating;
@@ -154,7 +188,7 @@ namespace SportsManager
             }
             return grassRating;
         }
-        int getClubRating()
+        int getClubRating(int holeNumber)
         {
             int clubRating;
             Random rand = new Random();
@@ -286,5 +320,37 @@ namespace SportsManager
             }
             return shotTrajRating;
         }
+        /*int getClubRating (int shotNum, int par, int distanceToHole)
+        {
+            course.getHoleYardage();
+            course.getPar();
+            if lieName = "Unplayable"
+            {
+
+            }
+            else{
+                if (locationName = "Behind Something")
+                {
+
+                }
+                elseif (locationName = "Obsucted")
+                {
+
+                }
+                else
+                {
+                    //assess weather
+                    bool reachable = round.getHoleReachAbility(distanceToHole);
+                    if reachable = true
+                    {
+                        
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }*/
     }
 }

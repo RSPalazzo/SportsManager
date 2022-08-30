@@ -4,11 +4,12 @@ namespace SportsManager
 {
     class ShotSimulator
      {
-        
-        bool Shot = false;
-        public void ShotGenerator (int shotDiff, int playerSk)
+       
+        public bool ShotGenerator (int shotDiff, int playerSk)
         {
-            Shot = ShotSimulation(shotDiff, playerSk);
+            bool Shot = ShotSimulation(shotDiff, playerSk);
+            Console.WriteLine("Shot was: " + Shot);
+            return Shot;
         }
         bool ShotSimulation (double shotDifficulty, double PlayerSkill)
         {
@@ -19,11 +20,9 @@ namespace SportsManager
             Console.WriteLine("Random was:"+ perCent);
 
             if (shotPercentage >= perCent){
-                Console.WriteLine("Shot was: " + Shot);
                 return true;
             }
             else{
-                Console.WriteLine("Shot was: " + Shot);
                 return false;
             }
         }

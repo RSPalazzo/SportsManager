@@ -1,0 +1,16 @@
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.csprojAssemblyReference.cache
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.AssemblyInfoInputs.cache
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.AssemblyInfo.cs
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.csproj.CoreCompileInputs.cache
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\SportsManager.exe
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\SportsManager.deps.json
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\SportsManager.runtimeconfig.json
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\SportsManager.runtimeconfig.dev.json
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\SportsManager.dll
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\ref\SportsManager.dll
+C:\Users\rpala\git\SportsManager\bin\Debug\net5.0\SportsManager.pdb
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.dll
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\ref\SportsManager.dll
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.pdb
+C:\Users\rpala\git\SportsManager\obj\Debug\net5.0\SportsManager.genruntimeconfig.cache
