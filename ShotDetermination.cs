@@ -4,29 +4,41 @@ namespace SportsManager
 {
     class ShotDeterminer 
     {
-        GolfCourse course = new GolfCourse();
-        string lieName;
-        string locationName;
+        public string lieName;
+        public string locationName;
+        public string clubName;
+        public int weather;
+        public int wind;    
+        public int rain;  
+        public int altitude; 
+        public int temp; 
+        public int lie;
+        public int location;
+        public int grass;
+        public int club;
+        public int shotType;
+        public int shotTraj;
+
         public int getShotDifficulty (int holeNumber, int par, int holeShotNumber, int distanceToHole)
         {
-            int weather = getWeatherRating();
-            int lie = getLieRating(holeShotNumber);
-            int location = getLocationRating(holeShotNumber);
-            int grass = getGrassRating();
-            int club = getClubRating(holeShotNumber);
-            int shotType = getShotTypeRating();
-            int shotTraj = getShotTrajRating();
+            weather = getWeatherRating();
+            lie = getLieRating(holeShotNumber);
+            location = getLocationRating(holeShotNumber);
+            grass = getGrassRating();
+            int clubRating = getClubRating(holeShotNumber, distanceToHole);
+            shotType = getShotTypeRating();
+            shotTraj = getShotTrajRating();
             
-            int shotDifficulty = (weather + lie + location + grass + club + shotType + shotTraj);
+            int shotDifficulty = (weather + lie + location + grass + clubRating + shotType + shotTraj);
             return shotDifficulty; 
         }
         int getWeatherRating ()
         {
             Random rand = new Random();
-            int wind = rand.Next(0, 40);    
-            int rain = rand.Next(0, 40);  
-            int altitude = rand.Next(0, 10);  
-            int temp = rand.Next(0, 10); 
+            wind = rand.Next(0, 40);    
+            rain = rand.Next(0, 40);  
+            altitude = rand.Next(0, 10);  
+            temp = rand.Next(0, 10); 
 
             int weatherRating = (wind + rain + altitude + temp);   
             return weatherRating;      
@@ -188,11 +200,54 @@ namespace SportsManager
             }
             return grassRating;
         }
-        int getClubRating(int holeNumber)
+        int getClubRating(int holeNumber, int distanceToHole)
         {
             int clubRating;
-            Random rand = new Random();
-            int club = rand.Next (0, 9);
+            if (distanceToHole > 300)
+            {
+                club = 0;
+                clubName = "Driver";
+            }
+            else if (distanceToHole > 250 && distanceToHole <= 265)
+            {
+                club = 1;
+                clubName = "Driving Iron";
+            }
+            else if (distanceToHole > 265 && distanceToHole <= 300)
+            {
+                club = 3;
+                clubName = "Wood";
+            }
+            else if (distanceToHole > 120 && distanceToHole <= 165)
+            {
+                club = 8;
+                clubName = "Wedge";
+            }
+            else if (distanceToHole > 165 && distanceToHole <= 185)
+            {
+                club = 7;
+                clubName = "Short Iron";
+            }
+            else if (distanceToHole > 185 && distanceToHole <= 210)
+            {
+                club = 6;
+                clubName = "Mid Iron";
+            }
+            else if (distanceToHole > 210 && distanceToHole <= 235)
+            {
+                club = 4;
+                clubName = "Long Iron";
+            }
+            else if (distanceToHole > 235 && distanceToHole <= 265)
+            {
+                club = 5;
+                clubName = "Hybrid";
+            }
+            else
+            {
+                club = 8;
+                clubName = "Wedge";
+            }
             switch (club){
                 case 0:
                     clubRating = 100;
@@ -320,11 +375,10 @@ namespace SportsManager
             }
             return shotTrajRating;
         }
-        /*int getClubRating (int shotNum, int par, int distanceToHole)
+        /*int getClubRating (int shotNum, int distanceToHole)
         {
-            course.getHoleYardage();
-            course.getPar();
-            if lieName = "Unplayable"
+            
+            /*if lieName = "Unplayable"
             {
 
             }
@@ -333,7 +387,7 @@ namespace SportsManager
                 {
 
                 }
-                elseif (locationName = "Obsucted")
+                else if (locationName = "Obsucted")
                 {
 
                 }
@@ -352,5 +406,45 @@ namespace SportsManager
                 }
             }
         }*/
+        public int getClubBaseDistance(int clubChoice)
+        {
+            int clubYards;
+            switch (clubChoice){
+                case 0:
+                    clubYards = 200;
+                    break;
+                case 1:
+                    clubYards = 120;
+                    break;
+                case 2:
+                    clubYards  = 0;
+                    break;
+                case 3:
+                    clubYards  = 140;
+                    break;
+                case 4:
+                    clubYards  = 80;
+                    break;
+                case 5:
+                    clubYards  = 100;
+                    break;
+                case 6:
+                    clubYards  = 60;
+                    break;
+                case 7:
+                    clubYards  = 40;
+                    break;
+                case 8:
+                    clubYards  = 20;
+                    break;
+                case 9:
+                    clubYards  = 10;
+                    break;
+                default:
+                    clubYards  = 0;
+                    break;
+            }
+            return clubYards;
+        }
     }
 }
