@@ -7,6 +7,7 @@ namespace SportsManager
         public string lieName;
         public string locationName;
         public string clubName;
+        public string shotTypeName;
         public int weather;
         public int wind;    
         public int rain;  
@@ -22,14 +23,15 @@ namespace SportsManager
         public int getShotDifficulty (int holeNumber, int par, int holeShotNumber, int distanceToHole)
         {
             weather = getWeatherRating();
-            lie = getLieRating(holeShotNumber);
-            location = getLocationRating(holeShotNumber);
+            int lieRating = getLieRating(holeShotNumber);
+            int locationRating = getLocationRating(holeShotNumber);
             grass = getGrassRating();
-            int clubRating = getClubRating(holeShotNumber, distanceToHole);
-            shotType = getShotTypeRating();
+            getShot(distanceToHole, lie, location);
+            int clubRating = getClubChoiceRating(club);
+            int shotRating = getShotTypeRating(shotType);
             shotTraj = getShotTrajRating();
             
-            int shotDifficulty = (weather + lie + location + grass + clubRating + shotType + shotTraj);
+            int shotDifficulty = (weather + lieRating + locationRating + grass + clubRating + shotRating + shotTraj);
             return shotDifficulty; 
         }
         int getWeatherRating ()
@@ -46,7 +48,6 @@ namespace SportsManager
         int getLieRating(int shotNum)
         {
             int lieRating;
-            int lie;
             if (shotNum == 1) {
                lie = 12;
             }
@@ -157,7 +158,7 @@ namespace SportsManager
                     break;
                 case 8:
                     locationRating = 250;
-                    locationName = "Obsucted";
+                    locationName = "Obstructed";
                     break;
                 case 9:
                     locationRating = 250;
@@ -200,55 +201,10 @@ namespace SportsManager
             }
             return grassRating;
         }
-        int getClubRating(int holeNumber, int distanceToHole)
+        int getClubChoiceRating(int clubChoice)
         {
             int clubRating;
-            if (distanceToHole > 300)
-            {
-                club = 0;
-                clubName = "Driver";
-            }
-            else if (distanceToHole > 250 && distanceToHole <= 265)
-            {
-                club = 1;
-                clubName = "Driving Iron";
-            }
-            else if (distanceToHole > 265 && distanceToHole <= 300)
-            {
-                club = 3;
-                clubName = "Wood";
-            }
-            else if (distanceToHole > 120 && distanceToHole <= 165)
-            {
-                club = 8;
-                clubName = "Wedge";
-            }
-            else if (distanceToHole > 165 && distanceToHole <= 185)
-            {
-                club = 7;
-                clubName = "Short Iron";
-            }
-            else if (distanceToHole > 185 && distanceToHole <= 210)
-            {
-                club = 6;
-                clubName = "Mid Iron";
-            }
-            else if (distanceToHole > 210 && distanceToHole <= 235)
-            {
-                club = 4;
-                clubName = "Long Iron";
-            }
-            else if (distanceToHole > 235 && distanceToHole <= 265)
-            {
-                club = 5;
-                clubName = "Hybrid";
-            }
-            else
-            {
-                club = 8;
-                clubName = "Wedge";
-            }
-            switch (club){
+            switch (clubChoice){
                 case 0:
                     clubRating = 100;
                     break;
@@ -285,12 +241,10 @@ namespace SportsManager
             }
             return clubRating;
         }
-        int getShotTypeRating()
+        int getShotTypeRating(int shotT)
         {
             int shotTypeRating;
-            Random rand = new Random();
-            int shotType = rand.Next (0, 11);
-            switch (shotType){
+            switch (shotT){
                 case 0:
                     shotTypeRating = 100;
                     break;
@@ -375,37 +329,160 @@ namespace SportsManager
             }
             return shotTrajRating;
         }
-        /*int getClubRating (int shotNum, int distanceToHole)
-        {
-            
-            /*if lieName = "Unplayable"
+        void getShot(int distanceToHole, int shotLie, int shotLocation)
+        {            
+            if (shotLie == 6)
             {
-
+                //Take Drop
             }
-            else{
-                if (locationName = "Behind Something")
+            else
+            {
+                if (shotLocation == 9)
                 {
-
+                    //Back in Play
                 }
-                else if (locationName = "Obsucted")
+                else if (shotLocation == 8)
                 {
-
+                    //Layup or //Back in play
                 }
                 else
                 {
                     //assess weather
-                    bool reachable = round.getHoleReachAbility(distanceToHole);
-                    if reachable = true
+                    bool reachable = getHoleReachability(distanceToHole, 0);
+                    if (reachable == true)
                     {
-                        
+                        club = getClubChoice(distanceToHole);
+                        shotType = getShotType(distanceToHole, lie, location);
                     }
                     else
                     {
-
+                        //Calculate good leave distance
+                        club = getClubChoice(distanceToHole);
+                        shotType = getShotType(distanceToHole, lie, location);
                     }
                 }
             }
-        }*/
+        }
+        int getClubChoice(int distanceToHole)
+        {
+            int clubChoice;
+            if (distanceToHole > 300)
+            {
+                clubChoice = 0;
+                clubName = "Driver";
+            }
+            else if (distanceToHole > 250 && distanceToHole <= 265)
+            {
+                clubChoice = 1;
+                clubName = "Driving Iron";
+            }
+            else if (distanceToHole > 265 && distanceToHole <= 300)
+            {
+                clubChoice = 3;
+                clubName = "Wood";
+            }
+            else if (distanceToHole > 120 && distanceToHole <= 165)
+            {
+                clubChoice = 8;
+                clubName = "Wedge";
+            }
+            else if (distanceToHole > 165 && distanceToHole <= 185)
+            {
+                clubChoice = 7;
+                clubName = "Short Iron";
+            }
+            else if (distanceToHole > 185 && distanceToHole <= 210)
+            {
+                clubChoice = 6;
+                clubName = "Mid Iron";
+            }
+            else if (distanceToHole > 210 && distanceToHole <= 235)
+            {
+                clubChoice = 4;
+                clubName = "Long Iron";
+            }
+            else if (distanceToHole > 235 && distanceToHole <= 265)
+            {
+                clubChoice = 5;
+                clubName = "Hybrid";
+            }
+            else
+            {
+                clubChoice = 8;
+                clubName = "Wedge";
+            }
+            return clubChoice;
+        }
+        int getShotType(int shotDistanceToHole, int shotLie, int shotLocation)
+        {  
+            int shotTy;
+            bool fullSwing = getHoleReachability(shotDistanceToHole, 8);
+            if (fullSwing == true)
+            {
+                shotTy = 0;
+                shotTypeName = "Full Swing";
+            }
+            else if (fullSwing == false && shotDistanceToHole > 30)
+            {
+                shotTy = 3;
+                shotTypeName = "Pitch";
+            }
+            else if (fullSwing == false && shotDistanceToHole <= 30 && shotLocation == 6)
+            {
+                shotTy = 10;
+                shotTypeName = "Greenside Bunker";
+            }
+            else if (fullSwing == false && shotDistanceToHole <= 30 && shotLocation != 6)
+            {
+                shotTy = getChipShotType(shotLie, shotLocation);
+            }
+            else
+            {
+                shotTy = 8;
+                shotTypeName = "Flop Shot";
+            }
+            return shotTy;
+        }
+        bool getHoleReachability (int distanceToHole, int clubDistanceSim)
+        {
+            Player play = new Player();
+            int strength = play.strength;
+            int flexibility = play.flexibility;
+            int balance = play.balance;
+            int agility = play.agility;
+            int tempo = play.tempo;
+            int swing = play.swing;
+            int ballStriking = play.ballStriking;
+            int fit = play.fit;
+            int quality = play.quality;
+            int demeanor = play.demeanor;
+            int condition = play.condition;
+            int baseDistance = getClubBaseDistance(clubDistanceSim);
+            int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp + baseDistance);
+            if (totalYards < distanceToHole)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        int getChipShotType(int shotLie, int shotLocation)
+        {
+            int shotTy = 8;
+            if (shotLocation == 0)
+            {
+                shotTy = 6;
+                shotTypeName = "Chip Shot";
+            }
+            else if (shotLocation != 0)
+            {
+                shotTy = 7;
+                shotTypeName = "Hinge and Hold";
+            }
+            return shotTy;
+        }
         public int getClubBaseDistance(int clubChoice)
         {
             int clubYards;

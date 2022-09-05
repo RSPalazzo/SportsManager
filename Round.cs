@@ -62,7 +62,8 @@ namespace SportsManager
                     shotDifficulty = shot.getShotDifficulty(holeNumber, par, holeScore, distanceToHole);
                     playerSkill = play.getPlayerSkill();
                     Console.WriteLine("shotDifficulty: " + shotDifficulty + " playerSkill: " + playerSkill);
-                    
+                    Console.WriteLine("Club choice is: " + shot.clubName + " Shot Type was: " + shot.shotTypeName);
+                    Console.WriteLine("Lie was: " + shot.lieName + " Location was: " + shot.locationName);
                     //Simulate the shot
                     shotSim = sim.ShotGenerator(shotDifficulty, playerSkill);
                     Console.WriteLine("Shot Percent was: " + sim.shotPercentage + " Random was: "+ sim.perCent);
@@ -72,11 +73,11 @@ namespace SportsManager
                     shotPercent = Convert.ToInt32(sim.shotPercentage);
                     shotGrade = result.getShotResultsGrade(shotPercent, sim.perCent, shotSim);
                     baseShot = shot.getClubBaseDistance(shot.club);
-                    Console.WriteLine("Shot Grade was: " + shotGrade + " Club choice is: "+ shot.clubName);
+                    Console.WriteLine("Shot Grade was: " + shotGrade);
                     //Shot Distance
                     distance = result.getShotResultsYards(play.strength, play.flexibility, play.balance, play.agility, play.tempo, play.swing, 
                                                             play.ballStriking, play.fit, play.quality, play.demeanor, play.condition ,shot.club, shot.shotTraj, 
-                                                            shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot);
+                                                            shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot, shot.shotType, distanceToHole);
                     distanceToHole = result.getDistanceToHole(distanceToHole, distance);
                     Console.WriteLine("Ball went: " + distance + " Distance Left is: " + distanceToHole);
                     Console.WriteLine ("End Shot");
@@ -108,7 +109,14 @@ namespace SportsManager
         }
         public bool generateIsBallInHole(int distanceToHole)
         {
-            if (distanceToHole <= 5)
+            if (distanceToHole <= 8)
+            {
+                holeScore = holeScore + 1;
+                Console.WriteLine("Hole Score is: " + holeScore);
+                Thread.Sleep(5000);
+                return true;
+            }
+            else if (distanceToHole <= 30)
             {
                 holeScore = holeScore + 2;
                 Console.WriteLine("Hole Score is: " + holeScore);

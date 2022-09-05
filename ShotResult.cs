@@ -78,16 +78,58 @@ namespace SportsManager
             }
             return yards;
         }
+        int  getShotGradeAccuracy(int shotGr)
+        {
+            int yards;
+            Random rand = new Random();
+            switch (shotGr)
+            {
+                case 1:
+                    yards = rand.Next (0, 5);
+                    break;
+                case 2:
+                    yards = rand.Next (6, 8);
+                    break;
+                case 3:
+                    yards = rand.Next (9, 12);
+                    break;
+                case 4:
+                    yards = rand.Next (13, 18);
+                    break;
+                case 5:
+                    yards = rand.Next (19, 30);
+                    break;
+                case 6:
+                    yards = rand.Next (31, 50);
+                    break;
+                case 7:
+                    yards = rand.Next (50, 100);
+                    break;
+                default:
+                    yards = 0;
+                    break;
+            }
+            return yards;
+        }
         public int getShotResultsYards (int strength, int flexibility, int balance, int agility, int tempo, 
                                         int swing, int ballStriking, int fit, int quality,
                                         int demeanor, int condition, int clubChoice, int shotTraj,
-                                        int grass, int rain, int altitude, int temp, int shotGrade, int baseDistance)
+                                        int grass, int rain, int altitude, int temp, int shotGrade, int baseDistance, int shotType, int distanceToHole)
         {
-             //Distance
-            int totalStats = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp);
-            int shotGradeYards = getShotGradeYards(shotGrade);
-            int distance = baseDistance + totalStats + shotGradeYards;
-            return distance;
+            if (shotType == 0)
+            {
+                int totalStats = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp);
+                int shotGradeYards = getShotGradeYards(shotGrade);
+                int distance = baseDistance + totalStats + shotGradeYards;
+                return distance;
+            }
+            else
+            {
+                int distance = getShotGradeAccuracy(shotGrade);
+                distance = distanceToHole - distance;
+                return distance;
+            }
+
         }
         public int getDistanceToHole (int currentDistance, int shotDistance)
         {
