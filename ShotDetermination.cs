@@ -445,7 +445,7 @@ namespace SportsManager
         }
         bool getHoleReachability (int distanceToHole, int clubDistanceSim)
         {
-            Player play = new Player();
+            Player play = new Player(1);
             int strength = play.strength;
             int flexibility = play.flexibility;
             int balance = play.balance;

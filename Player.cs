@@ -1,33 +1,96 @@
 using System;
+using Newtonsoft.Json.Linq;
 
 namespace SportsManager
 {
     class Player
      {
-        public int strength = 8;
-        public int stamina = 7;
-        public int balance = 6;
-        public int flexibility = 9;
-        public int agility = 5;
+        //Player Info
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string fullName { get; set; }
+        public string height { get; set; }
+        public string weight  { get; set; }
+        public string birthday { get; set; }
+        //playerImage
+        public string country { get; set; }
+        //country flag
+        public string handedness { get; set; }
+        public string personality { get; set; }
+        //Attributes
+        //Physical
+        public int strength { get; set; }
+        public int stamina { get; set; }
+        public int balance { get; set; }
+        public int flexibility { get; set; }
+        public int agility { get; set; }
+        //Condition
+        public int condition { get; set; }
+        //Mental
+        public int awareness { get; set; }
+        public int determination { get; set; }
+        public int positivity { get; set; }
+        public int demeanor { get; set; }
+        public int fortitude { get; set; }
+        //equipment
+        public int equipAccuracy { get; set; }
+        public int quality { get; set; }
+        public int fit { get; set; }
+        //mechanics
+        public int shotShaping { get; set; }
+        public int tempo { get; set; }
+        public int swing { get; set; }
+        public int accuracy { get; set; }
+        public int ballStriking { get; set; }
 
-        public int condition;
-        public int awareness = 8;
-        public int determination = 10;
-        public int positivity = 5;
-        public int demeanor = 7;
-        public int fortitude =5;
+        public int playerOverallSkill { get; set; }
 
-        public int equipAccuracy = 7;
-        public int quality = 8;
-        public int fit = 6;
+        public Player(int playerId)
+        {
+            var jsonString = System.IO.File.ReadAllText("Player" + playerId + ".json");
+            var jObject = JObject.Parse(jsonString);
 
-        public int shotShaping = 9;
-        public int tempo = 7;
-        public int swing = 3;
-        public int accuracy = 5;
-        public int ballStriking = 10;
+            firstName = jObject.SelectToken("playerFirstName").Value<string>();
+            lastName = jObject.SelectToken("playerLastName").Value<string>();
+            fullName = jObject.SelectToken("playerFullName").Value<string>();
+            height = jObject.SelectToken("playerHeight").Value<string>();
+            weight = jObject.SelectToken("playerWeight").Value<string>();
+            birthday = jObject.SelectToken("playerBirthday").Value<string>();
+            //playerImage
+            country = jObject.SelectToken("playerCountry").Value<string>();
+            //country flag
+            handedness = jObject.SelectToken("playerHandedness").Value<string>();
+            personality = jObject.SelectToken("playerPersonality").Value<string>();
+            //Physical
+            strength = jObject.SelectToken("$.attributes.physical.strength").Value<int>();
+            stamina = jObject.SelectToken("$.attributes.physical.stamina").Value<int>();
+            balance = jObject.SelectToken("$.attributes.physical.balance").Value<int>();
+            flexibility = jObject.SelectToken("$.attributes.physical.flexibility").Value<int>();
+            agility = jObject.SelectToken("$.attributes.physical.agility").Value<int>();
+            //Condition
+            condition  = jObject.SelectToken("$.attributes.playerCondition").Value<int>();
+            //Mental
+            awareness = jObject.SelectToken("$.attributes.mental.awareness").Value<int>();
+            determination = jObject.SelectToken("$.attributes.mental.determination").Value<int>();
+            positivity = jObject.SelectToken("$.attributes.mental.positivity").Value<int>();
+            demeanor = jObject.SelectToken("$.attributes.mental.demeanor").Value<int>();
+            fortitude = jObject.SelectToken("$.attributes.mental.fortitude").Value<int>();
+            //equipment
+            equipAccuracy = jObject.SelectToken("$.attributes.equipment.accuracy").Value<int>();
+            quality = jObject.SelectToken("$.attributes.equipment.quality").Value<int>();
+            fit = jObject.SelectToken("$.attributes.equipment.fit").Value<int>();
+            //mechanics
+            shotShaping = jObject.SelectToken("$.attributes.mechanics.shotShaping").Value<int>();
+            tempo = jObject.SelectToken("$.attributes.mechanics.tempo").Value<int>();
+            swing = jObject.SelectToken("$.attributes.mechanics.swing").Value<int>();
+            accuracy = jObject.SelectToken("$.attributes.mechanics.accuracy").Value<int>();
+            ballStriking = jObject.SelectToken("$.attributes.mechanics.ballStriking").Value<int>();
 
-        public int getPlayerSkill ()
+            playerOverallSkill = getPlayerSkill();
+
+        }
+
+        int getPlayerSkill ()
         {
             int physical = getPhysicalRating();
             int condition = getConditionRating();

@@ -6,7 +6,7 @@ namespace SportsManager
     class GolfRound
      {
         GolfCourse course = new GolfCourse();
-        Player play = new Player();
+        Player play = new Player(1);
 
         int holeNumber = 1;
         bool ballIsHoled = false;
@@ -60,8 +60,7 @@ namespace SportsManager
                     Console.WriteLine ("New Shot");
                     //Determinate Shot Difficulty and Player Skill Rating
                     shotDifficulty = shot.getShotDifficulty(holeNumber, par, holeScore, distanceToHole);
-                    playerSkill = play.getPlayerSkill();
-                    Console.WriteLine("shotDifficulty: " + shotDifficulty + " playerSkill: " + playerSkill);
+                    Console.WriteLine("shotDifficulty: " + shotDifficulty + " playerSkill: " + play.playerOverallSkill);
                     Console.WriteLine("Club choice is: " + shot.clubName + " Shot Type was: " + shot.shotTypeName);
                     Console.WriteLine("Lie was: " + shot.lieName + " Location was: " + shot.locationName);
                     //Simulate the shot
@@ -82,7 +81,7 @@ namespace SportsManager
                     Console.WriteLine("Ball went: " + distance + " Distance Left is: " + distanceToHole);
                     Console.WriteLine ("End Shot");
                     Console.WriteLine ("---------------------------------------");
-                    Thread.Sleep(5000);
+                    Thread.Sleep(10000);
                     //Add Shot to score and check if your on green
                     holeScore++;
                     ballIsHoled = generateIsBallInHole(distanceToHole);
@@ -113,14 +112,14 @@ namespace SportsManager
             {
                 holeScore = holeScore + 1;
                 Console.WriteLine("Hole Score is: " + holeScore);
-                Thread.Sleep(5000);
+                Thread.Sleep(10000);
                 return true;
             }
             else if (distanceToHole <= 30)
             {
                 holeScore = holeScore + 2;
                 Console.WriteLine("Hole Score is: " + holeScore);
-                Thread.Sleep(5000);
+                Thread.Sleep(10000);
                 return true;
             }
             else
