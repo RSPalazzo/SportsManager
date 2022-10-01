@@ -1,32 +1,35 @@
 using System;
+using Newtonsoft.Json;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace SportsManager
 {
-    class GolfCourse 
+    public class GolfCourse
     {
-        public int Rating = 73;
-        public int Slope = 130;
-        public int coursePar = 72;
-        public int courseYardage = 7200;
-        public int holeYardage = 400;
-        public int holeHandicap = 7;
-        public int holeNumber = 1;
-        public int par = 4;
-        public int getHoleYardage (int holeNumber)
+        public Course GetGolfCourse(int courseId)
         {
-            return holeYardage;
+            var jsonString = System.IO.File.ReadAllText("data/Courses/Course" + courseId + ".json");
+            Course course = JsonConvert.DeserializeObject<Course>(jsonString);
+            return course;
         }
-        public int getPar (int holeNumber) 
-        {
-            return par;
-        }
-        public int getCoursePar ()
-        {
-            return coursePar;
-        }
-        public int getCourseYardage ()
-        {
-            return courseYardage;
-        }
+    }
+    public class Course 
+    {
+        public List<Holes> holes { get; set; }
+        public string courseName { get; set; }
+        public int courseRating { get; set; }
+        public int courseSlope { get; set; }
+        public int coursePar { get; set; }
+        public int courseYardage { get; set; }
+    }
+    public class Holes
+    {
+            public string holeName { get; set; }
+            public int holeNumber { get; set; }
+            public int holePar { get; set; }
+            public int holeHandicap { get; set; }
+            public int holeYardage { get; set; }
+            public string holeLayout {get; set;}      
     }
 }

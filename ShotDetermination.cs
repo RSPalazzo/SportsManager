@@ -20,13 +20,13 @@ namespace SportsManager
         public int shotType;
         public int shotTraj;
 
-        public int getShotDifficulty (int holeNumber, int par, int holeShotNumber, int distanceToHole)
+        public int getShotDifficulty (int holeNumber, int par, int holeShotNumber, int distanceToHole, Player play)
         {
             weather = getWeatherRating();
             int lieRating = getLieRating(holeShotNumber);
             int locationRating = getLocationRating(holeShotNumber);
             grass = getGrassRating();
-            getShot(distanceToHole, lie, location);
+            getShot(distanceToHole, lie, location, play);
             int clubRating = getClubChoiceRating(club);
             int shotRating = getShotTypeRating(shotType);
             shotTraj = getShotTrajRating();
@@ -114,7 +114,6 @@ namespace SportsManager
         int getLocationRating(int shotNum)
         {
             int locationRating;
-            int location;
             if (shotNum == 1) {
                 location = 12;
             }
@@ -329,7 +328,7 @@ namespace SportsManager
             }
             return shotTrajRating;
         }
-        void getShot(int distanceToHole, int shotLie, int shotLocation)
+        void getShot(int distanceToHole, int shotLie, int shotLocation, Player player)
         {            
             if (shotLie == 6)
             {
@@ -348,17 +347,17 @@ namespace SportsManager
                 else
                 {
                     //assess weather
-                    bool reachable = getHoleReachability(distanceToHole, 0);
+                    bool reachable = getHoleReachability(distanceToHole, 0, player);
                     if (reachable == true)
                     {
                         club = getClubChoice(distanceToHole);
-                        shotType = getShotType(distanceToHole, lie, location);
+                        shotType = getShotType(distanceToHole, lie, location, player);
                     }
                     else
                     {
                         //Calculate good leave distance
                         club = getClubChoice(distanceToHole);
-                        shotType = getShotType(distanceToHole, lie, location);
+                        shotType = getShotType(distanceToHole, lie, location, player);
                     }
                 }
             }
@@ -413,10 +412,10 @@ namespace SportsManager
             }
             return clubChoice;
         }
-        int getShotType(int shotDistanceToHole, int shotLie, int shotLocation)
+        int getShotType(int shotDistanceToHole, int shotLie, int shotLocation, Player playerShotType)
         {  
             int shotTy;
-            bool fullSwing = getHoleReachability(shotDistanceToHole, 8);
+            bool fullSwing = getHoleReachability(shotDistanceToHole, 0, playerShotType);
             if (fullSwing == true)
             {
                 shotTy = 0;
@@ -443,20 +442,20 @@ namespace SportsManager
             }
             return shotTy;
         }
-        bool getHoleReachability (int distanceToHole, int clubDistanceSim)
+        bool getHoleReachability (int distanceToHole, int clubDistanceSim, Player playerr)
         {
-            Player play = new Player(1);
-            int strength = play.strength;
-            int flexibility = play.flexibility;
-            int balance = play.balance;
-            int agility = play.agility;
-            int tempo = play.tempo;
-            int swing = play.swing;
-            int ballStriking = play.ballStriking;
-            int fit = play.fit;
-            int quality = play.quality;
-            int demeanor = play.demeanor;
-            int condition = play.condition;
+            
+            int strength = playerr.strength;
+            int flexibility = playerr.flexibility;
+            int balance = playerr.balance;
+            int agility = playerr.agility;
+            int tempo = playerr.tempo;
+            int swing = playerr.swing;
+            int ballStriking = playerr.ballStriking;
+            int fit = playerr.fit;
+            int quality = playerr.quality;
+            int demeanor = playerr.demeanor;
+            int condition = playerr.condition;
             int baseDistance = getClubBaseDistance(clubDistanceSim);
             int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp + baseDistance);
             if (totalYards < distanceToHole)

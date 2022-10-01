@@ -47,44 +47,44 @@ namespace SportsManager
 
         public Player(int playerId)
         {
-            var jsonString = System.IO.File.ReadAllText("Player" + playerId + ".json");
+            var jsonString = System.IO.File.ReadAllText("data/Players/Player" + playerId + ".json");
             var jObject = JObject.Parse(jsonString);
-
-            firstName = jObject.SelectToken("playerFirstName").Value<string>();
-            lastName = jObject.SelectToken("playerLastName").Value<string>();
-            fullName = jObject.SelectToken("playerFullName").Value<string>();
-            height = jObject.SelectToken("playerHeight").Value<string>();
-            weight = jObject.SelectToken("playerWeight").Value<string>();
-            birthday = jObject.SelectToken("playerBirthday").Value<string>();
+            firstName = jObject.SelectToken("Player.playerFirstName").Value<string>();
+            lastName = jObject.SelectToken("Player.playerLastName").Value<string>();
+            fullName = jObject.SelectToken("Player.playerFullName").Value<string>();
+            height = jObject.SelectToken("Player.playerHeight").Value<string>();
+            weight = jObject.SelectToken("Player.playerWeight").Value<string>();
+            birthday = jObject.SelectToken("Player.playerBirthday").Value<string>();
             //playerImage
-            country = jObject.SelectToken("playerCountry").Value<string>();
+            country = jObject.SelectToken("Player.playerCountry").Value<string>();
             //country flag
-            handedness = jObject.SelectToken("playerHandedness").Value<string>();
-            personality = jObject.SelectToken("playerPersonality").Value<string>();
+            handedness = jObject.SelectToken("Player.playerHandedness").Value<string>();
+            personality = jObject.SelectToken("Player.playerPersonality").Value<string>();
+            
             //Physical
-            strength = jObject.SelectToken("$.attributes.physical.strength").Value<int>();
-            stamina = jObject.SelectToken("$.attributes.physical.stamina").Value<int>();
-            balance = jObject.SelectToken("$.attributes.physical.balance").Value<int>();
-            flexibility = jObject.SelectToken("$.attributes.physical.flexibility").Value<int>();
-            agility = jObject.SelectToken("$.attributes.physical.agility").Value<int>();
+            strength = jObject.SelectToken("Player.attributes.physical.strength").Value<int>();
+            stamina = jObject.SelectToken("Player.attributes.physical.stamina").Value<int>();
+            balance = jObject.SelectToken("Player.attributes.physical.balance").Value<int>();
+            flexibility = jObject.SelectToken("Player.attributes.physical.flexibility").Value<int>();
+            agility = jObject.SelectToken("Player.attributes.physical.agility").Value<int>();
             //Condition
-            condition  = jObject.SelectToken("$.attributes.playerCondition").Value<int>();
+            condition  = jObject.SelectToken("Player.attributes.playerCondition").Value<int>();
             //Mental
-            awareness = jObject.SelectToken("$.attributes.mental.awareness").Value<int>();
-            determination = jObject.SelectToken("$.attributes.mental.determination").Value<int>();
-            positivity = jObject.SelectToken("$.attributes.mental.positivity").Value<int>();
-            demeanor = jObject.SelectToken("$.attributes.mental.demeanor").Value<int>();
-            fortitude = jObject.SelectToken("$.attributes.mental.fortitude").Value<int>();
+            awareness = jObject.SelectToken("Player.attributes.mental.awareness").Value<int>();
+            determination = jObject.SelectToken("Player.attributes.mental.determination").Value<int>();
+            positivity = jObject.SelectToken("Player.attributes.mental.positivity").Value<int>();
+            demeanor = jObject.SelectToken("Player.attributes.mental.demeanor").Value<int>();
+            fortitude = jObject.SelectToken("Player.attributes.mental.fortitude").Value<int>();
             //equipment
-            equipAccuracy = jObject.SelectToken("$.attributes.equipment.accuracy").Value<int>();
-            quality = jObject.SelectToken("$.attributes.equipment.quality").Value<int>();
-            fit = jObject.SelectToken("$.attributes.equipment.fit").Value<int>();
+            equipAccuracy = jObject.SelectToken("Player.attributes.equipment.accuracy").Value<int>();
+            quality = jObject.SelectToken("Player.attributes.equipment.quality").Value<int>();
+            fit = jObject.SelectToken("Player.attributes.equipment.fit").Value<int>();
             //mechanics
-            shotShaping = jObject.SelectToken("$.attributes.mechanics.shotShaping").Value<int>();
-            tempo = jObject.SelectToken("$.attributes.mechanics.tempo").Value<int>();
-            swing = jObject.SelectToken("$.attributes.mechanics.swing").Value<int>();
-            accuracy = jObject.SelectToken("$.attributes.mechanics.accuracy").Value<int>();
-            ballStriking = jObject.SelectToken("$.attributes.mechanics.ballStriking").Value<int>();
+            shotShaping = jObject.SelectToken("Player.attributes.mechanics.shotShaping").Value<int>();
+            tempo = jObject.SelectToken("Player.attributes.mechanics.tempo").Value<int>();
+            swing = jObject.SelectToken("Player.attributes.mechanics.swing").Value<int>();
+            accuracy = jObject.SelectToken("Player.attributes.mechanics.accuracy").Value<int>();
+            ballStriking = jObject.SelectToken("Player.attributes.mechanics.ballStriking").Value<int>();
 
             playerOverallSkill = getPlayerSkill();
 

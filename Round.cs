@@ -5,12 +5,13 @@ namespace SportsManager
 {
     class GolfRound
      {
-        GolfCourse course = new GolfCourse();
+        GolfCourse golfCourse = new GolfCourse();
+        Course course = new Course();
         Player play = new Player(1);
 
         int holeNumber = 1;
         bool ballIsHoled = false;
-        bool roundActive = false;
+        //bool roundActive = false;
         bool isRoundOver = false;
         int courseYardage;
         int coursePar;
@@ -23,14 +24,15 @@ namespace SportsManager
 
         public int startRound ()
         {
-            coursePar = course.getCoursePar();
-            courseYardage = course.getCourseYardage();
+            course = golfCourse.GetGolfCourse(1);
+            coursePar = course.coursePar;
+            courseYardage = course.courseYardage;
             holeScore = 0;
             roundScore = 0;
             holeNumber = 1;
             ballIsHoled = false;
-            holeYardage = course.getHoleYardage(holeNumber);
-            par = course.getPar(holeNumber);
+            holeYardage = course.holes[holeNumber].holeYardage;
+            par = course.holes[holeNumber].holePar;
             playRound();
             return roundScore;
         }
@@ -41,7 +43,7 @@ namespace SportsManager
             int playerSkill = 0;
             int shotDifficulty = 0;
             int distance = 0;
-            int distanceToHole = holeYardage;
+            distanceToHole = holeYardage;
             int shotGrade = 0;
             int shotTraj = 0;
             int baseShot = 0;
@@ -59,7 +61,7 @@ namespace SportsManager
                     Console.WriteLine ("---------------------------------------");
                     Console.WriteLine ("New Shot");
                     //Determinate Shot Difficulty and Player Skill Rating
-                    shotDifficulty = shot.getShotDifficulty(holeNumber, par, holeScore, distanceToHole);
+                    shotDifficulty = shot.getShotDifficulty(holeNumber, par, holeScore, distanceToHole, play);
                     Console.WriteLine("shotDifficulty: " + shotDifficulty + " playerSkill: " + play.playerOverallSkill);
                     Console.WriteLine("Club choice is: " + shot.clubName + " Shot Type was: " + shot.shotTypeName);
                     Console.WriteLine("Lie was: " + shot.lieName + " Location was: " + shot.locationName);
@@ -74,8 +76,7 @@ namespace SportsManager
                     baseShot = shot.getClubBaseDistance(shot.club);
                     Console.WriteLine("Shot Grade was: " + shotGrade);
                     //Shot Distance
-                    distance = result.getShotResultsYards(play.strength, play.flexibility, play.balance, play.agility, play.tempo, play.swing, 
-                                                            play.ballStriking, play.fit, play.quality, play.demeanor, play.condition ,shot.club, shot.shotTraj, 
+                    distance = result.getShotResultsYards(play ,shot.club, shot.shotTraj, 
                                                             shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot, shot.shotType, distanceToHole);
                     distanceToHole = result.getDistanceToHole(distanceToHole, distance);
                     Console.WriteLine("Ball went: " + distance + " Distance Left is: " + distanceToHole);
@@ -93,8 +94,8 @@ namespace SportsManager
                     roundScore = roundScore + holeScore;
                     holeScore = 0;
                     holeNumber++;
-                    holeYardage = course.getHoleYardage(holeNumber);
-                    par = course.getPar(holeNumber);
+                    holeYardage = course.holes[holeNumber].holeYardage;
+                    par = course.holes[holeNumber].holePar;
                     distanceToHole = holeYardage;
                     distance = 0;
                     ballIsHoled = false;

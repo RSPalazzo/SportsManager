@@ -111,14 +111,13 @@ namespace SportsManager
             }
             return yards;
         }
-        public int getShotResultsYards (int strength, int flexibility, int balance, int agility, int tempo, 
-                                        int swing, int ballStriking, int fit, int quality,
-                                        int demeanor, int condition, int clubChoice, int shotTraj,
-                                        int grass, int rain, int altitude, int temp, int shotGrade, int baseDistance, int shotType, int distanceToHole)
+        public int getShotResultsYards (Player play, int clubChoice, int shotTraj, int grass, int rain, int altitude, int temp, int shotGrade, 
+                                            int baseDistance, int shotType, int distanceToHole)
         {
             if (shotType == 0)
             {
-                int totalStats = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp);
+                int totalStats = (play.strength + play.flexibility + play.balance + play.agility + play.tempo + play.swing + play.ballStriking + 
+                                    play.fit + play.quality + play.demeanor + play.condition + grass + rain + altitude + temp);
                 int shotGradeYards = getShotGradeYards(shotGrade);
                 int distance = baseDistance + totalStats + shotGradeYards;
                 return distance;
