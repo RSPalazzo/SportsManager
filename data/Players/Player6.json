@@ -1,0 +1,47 @@
+{
+"attributes":
+    {
+    "equipment":
+        {
+        "accuracy": 20,
+        "fit": 10,
+        "quality": 20
+        },
+    "mechanics":
+        {
+        "accuracy": 1,
+        "ballStriking": 1,
+        "shotShaping": 10,
+        "swing": 10,
+        "tempo": 10
+        },
+    "mental":
+        {
+        "awareness": 1,
+        "demeanor": 1,
+        "determination": 10,
+        "fortitude": 1,
+        "positivity": 10
+        },
+    "physical":
+        {
+        "agility": 3,
+        "balance": 3,
+        "flexibility": 3,
+        "stamina": 3,
+        "strength": 10
+        },
+    "playerCondition": 50
+    },
+"playerBirthday": "1995-01-10",
+"playerCountry": "United States of America",
+"playerCountryImage": null,
+"playerFirstName": "Tim",
+"playerFullName": "Tim Retard Timmy",
+"playerHandedness": "Right",
+"playerHeight": "5'10",
+"playerImage": null,
+"playerLastName": "Timmy",
+"playerPersonality": "Professional",
+"playerWeight": "180"
+}

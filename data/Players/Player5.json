@@ -1,0 +1,47 @@
+{
+"attributes":
+    {
+    "equipment":
+        {
+        "accuracy": 13,
+        "fit": 5,
+        "quality": 10
+        },
+    "mechanics":
+        {
+        "accuracy": 10,
+        "ballStriking": 10,
+        "shotShaping": 2,
+        "swing": 8,
+        "tempo": 8
+        },
+    "mental":
+        {
+        "awareness": 8,
+        "demeanor": 6,
+        "determination": 10,
+        "fortitude": 10,
+        "positivity": 8
+        },
+    "physical":
+        {
+        "agility": 7,
+        "balance": 10,
+        "flexibility": 7,
+        "stamina": 10,
+        "strength": 10
+        },
+    "playerCondition": 50
+    },
+"playerBirthday": "1993-06-11",
+"playerCountry": "United States of America",
+"playerCountryImage": null,
+"playerFirstName": "Jeff",
+"playerFullName": "Jeff Kim",
+"playerHandedness": "Right",
+"playerHeight": "5'4",
+"playerImage": null,
+"playerLastName": "Kim",
+"playerPersonality": "Professional",
+"playerWeight": "145"
+}

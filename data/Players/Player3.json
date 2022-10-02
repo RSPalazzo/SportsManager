@@ -1,0 +1,47 @@
+{
+"attributes":
+    {
+    "equipment":
+        {
+        "accuracy": 15,
+        "fit": 7,
+        "quality": 15
+        },
+    "mechanics":
+        {
+        "accuracy": 9,
+        "ballStriking": 7,
+        "shotShaping": 1,
+        "swing": 8,
+        "tempo": 8
+        },
+    "mental":
+        {
+        "awareness": 10,
+        "demeanor": 10,
+        "determination": 8,
+        "fortitude": 10,
+        "positivity": 10
+        },
+    "physical":
+        {
+        "agility": 5,
+        "balance": 3,
+        "flexibility": 6,
+        "stamina": 5,
+        "strength": 7
+        },
+    "playerCondition": 50
+    },
+"playerBirthday": "1985-01-15",
+"playerCountry": "United States of America",
+"playerCountryImage": null,
+"playerFirstName": "Joey",
+"playerFullName": "Joey Sugar Dobbs",
+"playerHandedness": "Right",
+"playerHeight": "5'10",
+"playerImage": null,
+"playerLastName": "Dobbs",
+"playerPersonality": "Professional",
+"playerWeight": "160"
+}

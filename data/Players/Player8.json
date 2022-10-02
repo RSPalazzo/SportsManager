@@ -1,0 +1,47 @@
+{
+"attributes":
+    {
+    "equipment":
+        {
+        "accuracy": 15,
+        "fit": 6,
+        "quality": 20
+        },
+    "mechanics":
+        {
+        "accuracy": 5,
+        "ballStriking": 10,
+        "shotShaping": 10,
+        "swing": 7,
+        "tempo": 7
+        },
+    "mental":
+        {
+        "awareness": 10,
+        "demeanor": 8,
+        "determination": 10,
+        "fortitude": 4,
+        "positivity": 8
+        },
+    "physical":
+        {
+        "agility": 5,
+        "balance": 7,
+        "flexibility": 7,
+        "stamina": 8,
+        "strength": 6
+        },
+    "playerCondition": 50
+    },
+"playerBirthday": "1982-05-10",
+"playerCountry": "United States of America",
+"playerCountryImage": null,
+"playerFirstName": "Ray",
+"playerFullName": "Ray Smith",
+"playerHandedness": "Right",
+"playerHeight": "6'0",
+"playerImage": null,
+"playerLastName": "Smith",
+"playerPersonality": "Professional",
+"playerWeight": "250"
+}

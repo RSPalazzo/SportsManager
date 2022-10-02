@@ -1,0 +1,47 @@
+{
+"attributes":
+    {
+    "equipment":
+        {
+        "accuracy": 10,
+        "fit": 5,
+        "quality": 10
+        },
+    "mechanics":
+        {
+        "accuracy": 5,
+        "ballStriking": 5,
+        "shotShaping": 5,
+        "swing": 5,
+        "tempo": 5
+        },
+    "mental":
+        {
+        "awareness": 5,
+        "demeanor": 5,
+        "determination": 5,
+        "fortitude": 5,
+        "positivity": 5
+        },
+    "physical":
+        {
+        "agility": 5,
+        "balance": 5,
+        "flexibility": 5,
+        "stamina": 5,
+        "strength": 5
+        },
+    "playerCondition": 50
+    },
+"playerBirthday": "1984-11-25",
+"playerCountry": "United States of America",
+"playerCountryImage": null,
+"playerFirstName": "Steve",
+"playerFullName": "Steve It's a Trap Purro",
+"playerHandedness": "Right",
+"playerHeight": "5'11",
+"playerImage": null,
+"playerLastName": "Purro",
+"playerPersonality": "Professional",
+"playerWeight": "190"
+}
