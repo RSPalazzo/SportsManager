@@ -23,7 +23,7 @@ namespace SportsManager
             ballIsHoled = false;
             playRound();
         }
-        public void playRound()
+        void playRound()
         {
 
             bool shotSim = false;
@@ -90,7 +90,7 @@ namespace SportsManager
                 }
             }
         }
-        public bool generateIsBallInHole(int distanceToHole)
+        bool generateIsBallInHole(int distanceToHole)
         {
             if (distanceToHole <= 8)
             {
@@ -111,7 +111,7 @@ namespace SportsManager
                 return false;
             }
         }
-        public bool getIsRoundOver()
+        bool getIsRoundOver()
         {
             bool roundOver = false;
             if (holeNumber == 18 && ballIsHoled == true)

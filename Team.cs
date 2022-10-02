@@ -6,11 +6,12 @@ namespace SportsManager
 {
     public class Team
     {
-        public TeamRoot GetTeam(int TeamId)
+        public TeamRoot team {get; set;}
+        public Team(int TeamId)
         {
             var jsonString = System.IO.File.ReadAllText("data/Teams/Team" + TeamId + ".json");
-            TeamRoot team = JsonConvert.DeserializeObject<TeamRoot>(jsonString);
-            return team;
+            TeamRoot t = JsonConvert.DeserializeObject<TeamRoot>(jsonString);
+            team = t;
         }
     }
     public class TeamRoot
@@ -28,6 +29,6 @@ namespace SportsManager
     }
     public class Roster
     {
-            public string playerId { get; set; }  
+            public int playerId { get; set; }  
     }
 }

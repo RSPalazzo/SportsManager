@@ -446,17 +446,17 @@ namespace SportsManager
         bool getHoleReachability (int distanceToHole, int clubDistanceSim, Player playerr)
         {
             
-            int strength = playerr.strength;
-            int flexibility = playerr.flexibility;
-            int balance = playerr.balance;
-            int agility = playerr.agility;
-            int tempo = playerr.tempo;
-            int swing = playerr.swing;
-            int ballStriking = playerr.ballStriking;
-            int fit = playerr.fit;
-            int quality = playerr.quality;
-            int demeanor = playerr.demeanor;
-            int condition = playerr.condition;
+            int strength = playerr.player.attributes.physical.strength;
+            int flexibility = playerr.player.attributes.physical.flexibility;
+            int balance = playerr.player.attributes.physical.balance;
+            int agility = playerr.player.attributes.physical.agility;
+            int tempo = playerr.player.attributes.mechanics.tempo;
+            int swing = playerr.player.attributes.mechanics.swing;
+            int ballStriking = playerr.player.attributes.mechanics.ballStriking;
+            int fit = playerr.player.attributes.equipment.fit;
+            int quality = playerr.player.attributes.equipment.quality;
+            int demeanor = playerr.player.attributes.mental.demeanor;
+            int condition = playerr.player.attributes.playerCondition;
             int baseDistance = getClubBaseDistance(clubDistanceSim);
             int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp + baseDistance);
             if (totalYards < distanceToHole)

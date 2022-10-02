@@ -1,97 +1,25 @@
 using System;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SportsManager
 {
     class Player
      {
-        //Player Info
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string fullName { get; set; }
-        public string height { get; set; }
-        public string weight  { get; set; }
-        public string birthday { get; set; }
-        //playerImage
-        public string country { get; set; }
-        //country flag
-        public string handedness { get; set; }
-        public string personality { get; set; }
-        //Attributes
-        //Physical
-        public int strength { get; set; }
-        public int stamina { get; set; }
-        public int balance { get; set; }
-        public int flexibility { get; set; }
-        public int agility { get; set; }
-        //Condition
-        public int condition { get; set; }
-        //Mental
-        public int awareness { get; set; }
-        public int determination { get; set; }
-        public int positivity { get; set; }
-        public int demeanor { get; set; }
-        public int fortitude { get; set; }
-        //equipment
-        public int equipAccuracy { get; set; }
-        public int quality { get; set; }
-        public int fit { get; set; }
-        //mechanics
-        public int shotShaping { get; set; }
-        public int tempo { get; set; }
-        public int swing { get; set; }
-        public int accuracy { get; set; }
-        public int ballStriking { get; set; }
+        
+        public PlayerRoot player { get; set; }
         public int playerOverallSkill { get; set; }
-
         public Player(int playerId)
         {
             var jsonString = System.IO.File.ReadAllText("data/Players/Player" + playerId + ".json");
-            var jObject = JObject.Parse(jsonString);
-            firstName = jObject.SelectToken("Player.playerFirstName").Value<string>();
-            lastName = jObject.SelectToken("Player.playerLastName").Value<string>();
-            fullName = jObject.SelectToken("Player.playerFullName").Value<string>();
-            height = jObject.SelectToken("Player.playerHeight").Value<string>();
-            weight = jObject.SelectToken("Player.playerWeight").Value<string>();
-            birthday = jObject.SelectToken("Player.playerBirthday").Value<string>();
-            //playerImage
-            country = jObject.SelectToken("Player.playerCountry").Value<string>();
-            //country flag
-            handedness = jObject.SelectToken("Player.playerHandedness").Value<string>();
-            personality = jObject.SelectToken("Player.playerPersonality").Value<string>();
-            
-            //Physical
-            strength = jObject.SelectToken("Player.attributes.physical.strength").Value<int>();
-            stamina = jObject.SelectToken("Player.attributes.physical.stamina").Value<int>();
-            balance = jObject.SelectToken("Player.attributes.physical.balance").Value<int>();
-            flexibility = jObject.SelectToken("Player.attributes.physical.flexibility").Value<int>();
-            agility = jObject.SelectToken("Player.attributes.physical.agility").Value<int>();
-            //Condition
-            condition  = jObject.SelectToken("Player.attributes.playerCondition").Value<int>();
-            //Mental
-            awareness = jObject.SelectToken("Player.attributes.mental.awareness").Value<int>();
-            determination = jObject.SelectToken("Player.attributes.mental.determination").Value<int>();
-            positivity = jObject.SelectToken("Player.attributes.mental.positivity").Value<int>();
-            demeanor = jObject.SelectToken("Player.attributes.mental.demeanor").Value<int>();
-            fortitude = jObject.SelectToken("Player.attributes.mental.fortitude").Value<int>();
-            //equipment
-            equipAccuracy = jObject.SelectToken("Player.attributes.equipment.accuracy").Value<int>();
-            quality = jObject.SelectToken("Player.attributes.equipment.quality").Value<int>();
-            fit = jObject.SelectToken("Player.attributes.equipment.fit").Value<int>();
-            //mechanics
-            shotShaping = jObject.SelectToken("Player.attributes.mechanics.shotShaping").Value<int>();
-            tempo = jObject.SelectToken("Player.attributes.mechanics.tempo").Value<int>();
-            swing = jObject.SelectToken("Player.attributes.mechanics.swing").Value<int>();
-            accuracy = jObject.SelectToken("Player.attributes.mechanics.accuracy").Value<int>();
-            ballStriking = jObject.SelectToken("Player.attributes.mechanics.ballStriking").Value<int>();
-
+            PlayerRoot play = JsonConvert.DeserializeObject<PlayerRoot>(jsonString);
             playerOverallSkill = getPlayerSkill();
-
+            player = play;
         }
         int getPlayerSkill ()
         {
             int physical = getPhysicalRating();
-            int condition = getConditionRating();
+            int condition = player.attributes.playerCondition;
             int mental = getMentalRating();
             int equipment = getEquipmentRating();
             int mechanics = getMechanicsRating();
@@ -101,52 +29,82 @@ namespace SportsManager
         }
         int getPhysicalRating ()
         {
-            int physicalRating = (agility + flexibility + balance + stamina + strength);   
+            int physicalRating = (player.attributes.physical.agility + player.attributes.physical.flexibility + player.attributes.physical.balance 
+                                    + player.attributes.physical.stamina + player.attributes.physical.strength);   
             return physicalRating;      
-        }
-        int getConditionRating()
-        {
-            int conditionRating;
-            Random rand = new Random();
-            int conditionRand = rand.Next (0, 3);
-            switch (conditionRand){
-                case 0:
-                    conditionRating = 0;
-                    condition = 0;
-                    break;
-                case 1:
-                    conditionRating = 20;
-                    condition = 4;
-                    break;
-                case 2:
-                    conditionRating = 40;
-                    condition = 8;
-                    break;
-                case 3:
-                    conditionRating = 50;
-                    condition = 10;
-                    break;
-                default:
-                    conditionRating = 0;
-                    condition = 10;
-                    break;
-            }
-            return conditionRating;
         }
         int getMentalRating ()
         {
-            int mentalRating = (fortitude + demeanor + positivity + determination + awareness);   
+            int mentalRating = (player.attributes.mental.fortitude + player.attributes.mental.demeanor + player.attributes.mental.positivity
+                                 + player.attributes.mental.determination + player.attributes.mental.awareness);   
             return mentalRating;      
         }
         int getEquipmentRating ()
         {
-            int equipmentRating = (fit + quality + accuracy);   
+            int equipmentRating = (player.attributes.equipment.fit + player.attributes.equipment.quality + player.attributes.equipment.accuracy);   
             return equipmentRating;      
         }
         int getMechanicsRating ()
         {
-            int mechanicsRating = (ballStriking + accuracy + swing + tempo);   
+            int mechanicsRating = (player.attributes.mechanics.ballStriking + player.attributes.mechanics.accuracy + player.attributes.mechanics.swing 
+                                    + player.attributes.mechanics.tempo + player.attributes.mechanics.shotShaping);   
             return mechanicsRating;      
         }
      }
+    public class PlayerRoot
+    {
+        public string playerFirstName { get; set; }
+        public string playerLastName { get; set; }
+        public string playerFullName { get; set; }
+        public string playerHeight { get; set; }
+        public string playerWeight  { get; set; }
+        public string playerBirthday { get; set; }
+        public string playerImage { get; set; }
+        public string playerCountry { get; set; }
+        public string playerCountryImage { get; set; }
+        public string playerHandedness { get; set; }
+        public string playerPersonality { get; set; }
+
+        public Attributes attributes {get; set;}
+    
+    }   
+    public class Attributes
+    {
+        public Physical physical { get; set; }
+        public int playerCondition { get; set;}
+        public Mental mental {get; set;}
+        public Equipment equipment { get; set; }
+        public Mechanics mechanics {get; set;}
+    }
+    public class Physical
+    {
+        public int strength { get; set; }
+        public int stamina { get; set; }
+        public int balance { get; set; }
+        public int flexibility { get; set; }
+        public int agility { get; set; }
+    }
+    public class Mental 
+    {
+        public int awareness { get; set; }
+        public int determination { get; set; }
+        public int positivity { get; set; }
+        public int demeanor { get; set; }
+        public int fortitude { get; set; }
+    }
+    public class Equipment
+    {
+        public int accuracy { get; set; }
+        public int quality { get; set; }
+        public int fit { get; set; }
+    }
+
+    public class Mechanics
+    {
+        public int shotShaping { get; set; }
+        public int tempo { get; set; }
+        public int swing { get; set; }
+        public int accuracy { get; set; }
+        public int ballStriking { get; set; }
+    }
 }

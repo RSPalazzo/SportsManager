@@ -1,50 +1,47 @@
 {
-"Player":
-    {
-    "playerFirstName": "Bob",
-    "playerLastName": "Palazzo",
-	"playerFullName": "Bob Santino Palazzo",
-    "playerHeight": "6'2",
-    "playerWeight": "320",
-    "playerImage": null,
-	"playerBirthday" : "1994-07-09",
-	"playerCountry" : "United States of America",
-	"playerCountryImage" : null,
-	"playerHandedness" : "Left",
-	"playerPersonality" : "Professional",
-	"attributes":
+"playerFirstName": "Bob",
+"playerLastName": "Palazzo",
+"playerFullName": "Bob Santino Palazzo",
+"playerHeight": "6'2",
+"playerWeight": "320",
+"playerImage": null,
+"playerBirthday" : "1994-07-09",
+"playerCountry" : "United States of America",
+"playerCountryImage" : null,
+"playerHandedness" : "Left",
+"playerPersonality" : "Professional",
+"attributes":
+	{
+	"physical": 
 		{
-		"physical": 
-			{
-			"agility" : 4,
-			"flexibility": 4,
-			"balance": 4,
-			"stamina": 4,
-			"strength": 6
-			},
-		"playerCondition": 50,
-		"mental":
-			{
-			"awareness" : 5,
-			"determination" : 10,
-			"positivity" : 6,
-			"demeanor" : 5,
-			"fortitude" : 3
-			},
-		"equipment":
-			{
-			"fit": 8,
-			"quality": 18,
-			"accuracy": 15
-			},
-		"mechanics":
-			{
-				"ballStriking": 8,
-				"accuracy": 2,
-				"swing": 4,
-				"tempo": 5,
-				"shotShaping": 8
-			}
+		"agility" : 4,
+		"flexibility": 4,
+		"balance": 4,
+		"stamina": 4,
+		"strength": 6
+		},
+	"playerCondition": 50,
+	"mental":
+		{
+		"awareness" : 5,
+		"determination" : 10,
+		"positivity" : 6,
+		"demeanor" : 5,
+		"fortitude" : 3
+		},
+	"equipment":
+		{
+		"fit": 8,
+		"quality": 18,
+		"accuracy": 15
+		},
+	"mechanics":
+		{
+			"ballStriking": 8,
+			"accuracy": 2,
+			"swing": 4,
+			"tempo": 5,
+			"shotShaping": 8
 		}
-    }
+	}
 }
