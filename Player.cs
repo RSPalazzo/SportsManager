@@ -42,7 +42,6 @@ namespace SportsManager
         public int swing { get; set; }
         public int accuracy { get; set; }
         public int ballStriking { get; set; }
-
         public int playerOverallSkill { get; set; }
 
         public Player(int playerId)
@@ -89,7 +88,6 @@ namespace SportsManager
             playerOverallSkill = getPlayerSkill();
 
         }
-
         int getPlayerSkill ()
         {
             int physical = getPhysicalRating();

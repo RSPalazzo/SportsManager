@@ -1,20 +1,20 @@
 using System;
 using Newtonsoft.Json;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace SportsManager
 {
-    public class GolfCourse
+    public class GolfCourse 
     {
-        public Course GetGolfCourse(int courseId)
+        public Course course { get; set; }
+        public GolfCourse(int courseId)
         {
             var jsonString = System.IO.File.ReadAllText("data/Courses/Course" + courseId + ".json");
-            Course course = JsonConvert.DeserializeObject<Course>(jsonString);
-            return course;
+            Course co = JsonConvert.DeserializeObject<Course>(jsonString);
+            course = co;
         }
     }
-    public class Course 
+    public class Course
     {
         public List<Holes> holes { get; set; }
         public string courseName { get; set; }

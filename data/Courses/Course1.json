@@ -11,7 +11,7 @@
 			"holeNumber": 1,
 			"holePar": 4,
 			"holeHandicap": 6,
-			"holeDistance": 480,
+			"holeYardage": 480,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -19,7 +19,7 @@
 			"holeNumber": 2,
 			"holePar": 3,
 			"holeHandicap": 15,
-			"holeDistance": 175,
+			"holeYardage": 175,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -27,7 +27,7 @@
 			"holeNumber": 3,
 			"holePar": 5,
 			"holeHandicap": 16,
-			"holeDistance": 550,
+			"holeYardage": 550,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -35,7 +35,7 @@
 			"holeNumber": 4,
 			"holePar": 4,
 			"holeHandicap": 9,
-			"holeDistance": 390,
+			"holeYardage": 390,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -43,7 +43,7 @@
 			"holeNumber": 5,
 			"holePar": 4,
 			"holeHandicap": 10,
-			"holeDistance": 430,
+			"holeYardage": 430,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -51,7 +51,7 @@
 			"holeNumber": 6,
 			"holePar": 3,
 			"holeHandicap": 18,
-			"holeDistance": 155,
+			"holeYardage": 155,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -59,7 +59,7 @@
 			"holeNumber": 7,
 			"holePar": 4,
 			"holeHandicap": 11,
-			"holeDistance": 400,
+			"holeYardage": 400,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -67,7 +67,7 @@
 			"holeNumber": 8,
 			"holePar": 4,
 			"holeHandicap": 1,
-			"holeDistance": 500,
+			"holeYardage": 500,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -75,7 +75,7 @@
 			"holeNumber": 9,
 			"holePar": 5,
 			"holeHandicap": 14,
-			"holeDistance": 575,
+			"holeYardage": 575,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -83,7 +83,7 @@
 			"holeNumber": 10,
 			"holePar": 4,
 			"holeHandicap": 2,
-			"holeDistance": 450,
+			"holeYardage": 450,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -91,7 +91,7 @@
 			"holeNumber": 11,
 			"holePar": 4,
 			"holeHandicap": 4,
-			"holeDistance": 475,
+			"holeYardage": 475,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -99,7 +99,7 @@
 			"holeNumber": 12,
 			"holePar": 4,
 			"holeHandicap": 8,
-			"holeDistance": 420,
+			"holeYardage": 420,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -107,7 +107,7 @@
 			"holeNumber": 13,
 			"holePar": 5,
 			"holeHandicap": 13,
-			"holeDistance": 500,
+			"holeYardage": 500,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -115,7 +115,7 @@
 			"holeNumber": 14,
 			"holePar": 3,
 			"holeHandicap": 15,
-			"holeDistance": 200,
+			"holeYardage": 200,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -123,7 +123,7 @@
 			"holeNumber": 15,
 			"holePar": 4,
 			"holeHandicap": 5,
-			"holeDistance": 350,
+			"holeYardage": 350,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -131,7 +131,7 @@
 			"holeNumber": 16,
 			"holePar": 3,
 			"holeHandicap": 17,
-			"holeDistance": 110,
+			"holeYardage": 110,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -139,7 +139,7 @@
 			"holeNumber": 17,
 			"holePar": 5,
 			"holeHandicap": 12,
-			"holeDistance": 590,
+			"holeYardage": 590,
 			"holeLayout": "SickLayout"
 		},
 		{
@@ -147,7 +147,7 @@
 			"holeNumber": 18,
 			"holePar": 4,
 			"holeHandicap": 3,
-			"holeDistance": 480,
+			"holeYardage": 480,
 			"holeLayout": "SickLayout"
 		}			
 	]

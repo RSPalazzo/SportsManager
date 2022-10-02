@@ -5,7 +5,7 @@ namespace SportsManager
     class ShotDeterminer 
     {
         public string lieName;
-        public string locationName;
+        public string locationName; 
         public string clubName;
         public string shotTypeName;
         public int weather;
@@ -20,12 +20,13 @@ namespace SportsManager
         public int shotType;
         public int shotTraj;
 
-        public int getShotDifficulty (int holeNumber, int par, int holeShotNumber, int distanceToHole, Player play)
+        public int getShotDifficulty (int holeNumber, int holeShotNumber, int distanceToHole, Player play)
         {
             weather = getWeatherRating();
+            grass = getGrassRating();
             int lieRating = getLieRating(holeShotNumber);
             int locationRating = getLocationRating(holeShotNumber);
-            grass = getGrassRating();
+            
             getShot(distanceToHole, lie, location, play);
             int clubRating = getClubChoiceRating(club);
             int shotRating = getShotTypeRating(shotType);

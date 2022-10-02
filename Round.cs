@@ -5,45 +5,31 @@ namespace SportsManager
 {
     class GolfRound
      {
-        GolfCourse golfCourse = new GolfCourse();
-        Course course = new Course();
-        Player play = new Player(1);
-
-        int holeNumber = 1;
+        public int roundScore;
+        public int holeNumber;
+        public int distanceToHole;
+        public int holeScore;
+        Player play;
+        GolfCourse golfCourse;
         bool ballIsHoled = false;
-        //bool roundActive = false;
         bool isRoundOver = false;
-        int courseYardage;
-        int coursePar;
-        int holeYardage;
-        int par;
-        int distanceToHole;
-        int roundScore;
-        int holeScore;
-        
-
-        public int startRound ()
+        public GolfRound (int courseId, int playerId)
         {
-            course = golfCourse.GetGolfCourse(1);
-            coursePar = course.coursePar;
-            courseYardage = course.courseYardage;
+            golfCourse = new GolfCourse(courseId);
+            play = new Player(playerId);
             holeScore = 0;
             roundScore = 0;
             holeNumber = 1;
             ballIsHoled = false;
-            holeYardage = course.holes[holeNumber].holeYardage;
-            par = course.holes[holeNumber].holePar;
             playRound();
-            return roundScore;
         }
         public void playRound()
         {
 
             bool shotSim = false;
-            int playerSkill = 0;
             int shotDifficulty = 0;
             int distance = 0;
-            distanceToHole = holeYardage;
+            distanceToHole = golfCourse.course.holes[holeNumber-1].holeYardage;
             int shotGrade = 0;
             int shotTraj = 0;
             int baseShot = 0;
@@ -61,28 +47,27 @@ namespace SportsManager
                     Console.WriteLine ("---------------------------------------");
                     Console.WriteLine ("New Shot");
                     //Determinate Shot Difficulty and Player Skill Rating
-                    shotDifficulty = shot.getShotDifficulty(holeNumber, par, holeScore, distanceToHole, play);
+                    shotDifficulty = shot.getShotDifficulty(holeNumber, holeScore, distanceToHole, play);
                     Console.WriteLine("shotDifficulty: " + shotDifficulty + " playerSkill: " + play.playerOverallSkill);
                     Console.WriteLine("Club choice is: " + shot.clubName + " Shot Type was: " + shot.shotTypeName);
                     Console.WriteLine("Lie was: " + shot.lieName + " Location was: " + shot.locationName);
                     //Simulate the shot
-                    shotSim = sim.ShotGenerator(shotDifficulty, playerSkill);
+                    shotSim = sim.ShotGenerator(shotDifficulty, play.playerOverallSkill);
                     Console.WriteLine("Shot Percent was: " + sim.shotPercentage + " Random was: "+ sim.perCent);
                     Console.WriteLine("Shot was: " + shotSim);
-                    
                     //Shot Grading
                     shotPercent = Convert.ToInt32(sim.shotPercentage);
                     shotGrade = result.getShotResultsGrade(shotPercent, sim.perCent, shotSim);
                     baseShot = shot.getClubBaseDistance(shot.club);
                     Console.WriteLine("Shot Grade was: " + shotGrade);
                     //Shot Distance
-                    distance = result.getShotResultsYards(play ,shot.club, shot.shotTraj, 
+                    distance = result.getShotResultsYards(play, shot.club, shot.shotTraj, 
                                                             shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot, shot.shotType, distanceToHole);
                     distanceToHole = result.getDistanceToHole(distanceToHole, distance);
                     Console.WriteLine("Ball went: " + distance + " Distance Left is: " + distanceToHole);
                     Console.WriteLine ("End Shot");
                     Console.WriteLine ("---------------------------------------");
-                    Thread.Sleep(10000);
+                    //Thread.Sleep(10000);
                     //Add Shot to score and check if your on green
                     holeScore++;
                     ballIsHoled = generateIsBallInHole(distanceToHole);
@@ -94,9 +79,7 @@ namespace SportsManager
                     roundScore = roundScore + holeScore;
                     holeScore = 0;
                     holeNumber++;
-                    holeYardage = course.holes[holeNumber].holeYardage;
-                    par = course.holes[holeNumber].holePar;
-                    distanceToHole = holeYardage;
+                    distanceToHole = golfCourse.course.holes[holeNumber-1].holeYardage;
                     distance = 0;
                     ballIsHoled = false;
                 }

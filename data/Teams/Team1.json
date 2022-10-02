@@ -1,0 +1,35 @@
+{
+"teamName": "LargeCocks",
+"teamLogo": "Null",
+"foundingDate": "2000-01-01",
+"ownerId": 1,
+"reputation": "Good",
+"nickname": "Cocks",
+"captainId": 1,
+"viceCaptainId": 2,
+"division": "U25s",
+"roster":
+	[
+		{
+		"playerId": 1
+		},
+		{
+		"playerId": 2
+		},
+		{
+		"playerId": 3
+		},
+		{
+		"playerId": 4
+		},
+		{
+		"playerId": 5
+		},
+		{
+		"playerId": 6
+		},
+		{
+		"playerId": 7
+		}
+	]
+}
