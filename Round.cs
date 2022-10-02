@@ -27,7 +27,6 @@ namespace SportsManager
         {
 
             bool shotSim = false;
-            int shotDifficulty = 0;
             int distance = 0;
             distanceToHole = golfCourse.course.holes[holeNumber-1].holeYardage;
             int shotGrade = 0;
@@ -41,18 +40,17 @@ namespace SportsManager
 
                 if (isRoundOver == false && ballIsHoled == false)
                 {
-                    ShotDeterminer shot = new ShotDeterminer();
+                    ShotDeterminer shot = new ShotDeterminer(holeNumber, holeScore, distanceToHole, play);
                     ShotSimulator sim = new ShotSimulator();
                     ShotResult result = new ShotResult();
                     Console.WriteLine ("---------------------------------------");
                     Console.WriteLine ("New Shot");
                     //Determinate Shot Difficulty and Player Skill Rating
-                    shotDifficulty = shot.getShotDifficulty(holeNumber, holeScore, distanceToHole, play);
-                    Console.WriteLine("shotDifficulty: " + shotDifficulty + " playerSkill: " + play.playerOverallSkill);
+                    Console.WriteLine("shotDifficulty: " + shot.shotDifficulty + " playerSkill: " + play.playerOverallSkill);
                     Console.WriteLine("Club choice is: " + shot.clubName + " Shot Type was: " + shot.shotTypeName);
                     Console.WriteLine("Lie was: " + shot.lieName + " Location was: " + shot.locationName);
                     //Simulate the shot
-                    shotSim = sim.ShotGenerator(shotDifficulty, play.playerOverallSkill);
+                    shotSim = sim.ShotGenerator(shot.shotDifficulty, play.playerOverallSkill);
                     Console.WriteLine("Shot Percent was: " + sim.shotPercentage + " Random was: "+ sim.perCent);
                     Console.WriteLine("Shot was: " + shotSim);
                     //Shot Grading
@@ -96,14 +94,12 @@ namespace SportsManager
             {
                 holeScore = holeScore + 1;
                 Console.WriteLine("Hole Score is: " + holeScore);
-                Thread.Sleep(10000);
                 return true;
             }
             else if (distanceToHole <= 30)
             {
                 holeScore = holeScore + 2;
                 Console.WriteLine("Hole Score is: " + holeScore);
-                Thread.Sleep(10000);
                 return true;
             }
             else

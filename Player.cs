@@ -13,8 +13,8 @@ namespace SportsManager
         {
             var jsonString = System.IO.File.ReadAllText("data/Players/Player" + playerId + ".json");
             PlayerRoot play = JsonConvert.DeserializeObject<PlayerRoot>(jsonString);
-            playerOverallSkill = getPlayerSkill();
             player = play;
+            playerOverallSkill = getPlayerSkill();     
         }
         int getPlayerSkill ()
         {

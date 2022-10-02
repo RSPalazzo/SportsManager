@@ -19,21 +19,19 @@ namespace SportsManager
         public int club;
         public int shotType;
         public int shotTraj;
-
-        public int getShotDifficulty (int holeNumber, int holeShotNumber, int distanceToHole, Player play)
+        public int shotDifficulty;
+        public ShotDeterminer(int holeNumber, int holeShotNumber, int distanceToHole, Player play)
         {
             weather = getWeatherRating();
             grass = getGrassRating();
             int lieRating = getLieRating(holeShotNumber);
-            int locationRating = getLocationRating(holeShotNumber);
-            
+            int locationRating = getLocationRating(holeShotNumber);            
             getShot(distanceToHole, lie, location, play);
             int clubRating = getClubChoiceRating(club);
             int shotRating = getShotTypeRating(shotType);
             shotTraj = getShotTrajRating();
             
-            int shotDifficulty = (weather + lieRating + locationRating + grass + clubRating + shotRating + shotTraj);
-            return shotDifficulty; 
+            shotDifficulty = (weather + lieRating + locationRating + grass + clubRating + shotRating + shotTraj);
         }
         int getWeatherRating ()
         {
@@ -49,7 +47,7 @@ namespace SportsManager
         int getLieRating(int shotNum)
         {
             int lieRating;
-            if (shotNum == 1) {
+            if (shotNum == 0) {
                lie = 12;
             }
             else{ 
@@ -115,7 +113,7 @@ namespace SportsManager
         int getLocationRating(int shotNum)
         {
             int locationRating;
-            if (shotNum == 1) {
+            if (shotNum == 0) {
                 location = 12;
             }
             else{ 

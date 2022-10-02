@@ -119,19 +119,19 @@ namespace SportsManager
 
             if (Team1Score1 < Team2Score1)
             {
-                Console.WriteLine (team1.team.teamName + " wins day 1" + Team1Score1 + " - " + Team2Score1);
+                Console.WriteLine (team1.team.teamName + " wins day 1: " + Team1Score1 + " - " + Team2Score1);
             } 
             else
             {
-                Console.WriteLine (team2.team.teamName + " wins day 1" + Team2Score1 + " - " + Team1Score1);
+                Console.WriteLine (team2.team.teamName + " wins day 1: " + Team2Score1 + " - " + Team1Score1);
             }         
             if (Team1Score2 < Team2Score2)
             {
-                Console.WriteLine (team1.team.teamName + " wins day 2" + Team1Score2 + " - " + Team2Score2);
+                Console.WriteLine (team1.team.teamName + " wins day 2: " + Team1Score2 + " - " + Team2Score2);
             } 
             else
             {
-                Console.WriteLine (team2.team.teamName + " wins day 2 " + Team2Score2 + " - " + Team1Score2);
+                Console.WriteLine (team2.team.teamName + " wins day 2: " + Team2Score2 + " - " + Team1Score2);
             }    
         } 
     }
