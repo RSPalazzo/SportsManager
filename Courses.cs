@@ -30,6 +30,16 @@ namespace SportsManager
             public int holePar { get; set; }
             public int holeHandicap { get; set; }
             public int holeYardage { get; set; }
-            public string holeLayout {get; set;}      
+            public HoleLayout holeLayout {get; set;}      
+    }
+    public class HoleLayout 
+    {
+        public int fairway {get; set;}
+        public int firstCut {get; set;}
+        public int rough {get; set;}
+        public int woods {get; set;}
+        public int sand {get; set;}
+        public int water {get; set;}
+        public int deepRough {get; set;}
     }
 }
