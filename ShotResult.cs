@@ -111,10 +111,11 @@ namespace SportsManager
             }
             return yards;
         }
-        public int getShotResultsYards (Player play, int clubChoice, int shotTraj, int grass, int rain, int altitude, int temp, int shotGrade, 
-                                            int baseDistance, int shotType, int distanceToHole)
+        public int getShotResultsYards (Player play, int shotTraj, int grass, int rain, int altitude, int temp, int shotGrade, 
+                                            int baseDistance, string shotType, int distanceToHole)
         {
-            if (shotType == 0)
+            //TODO: Better use of Mechanics and Mentals and Equipment in shots IMPROVE THIS SYSTEM EVENTUALLY
+            if (shotType == "Full Swing")
             {
                 int totalStats = (play.player.attributes.physical.strength + play.player.attributes.physical.flexibility + play.player.attributes.physical.balance 
                                     + play.player.attributes.physical.agility + play.player.attributes.mechanics.tempo + play.player.attributes.mechanics.swing 

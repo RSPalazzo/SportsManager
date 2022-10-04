@@ -40,29 +40,35 @@ namespace SportsManager
 
                 if (isRoundOver == false && ballIsHoled == false)
                 {
-                    ShotDeterminer shot = new ShotDeterminer(holeNumber, holeScore, distanceToHole, play);
+                    ShotDeterminer shot = new ShotDeterminer(holeNumber-1, holeScore, distanceToHole, play, golfCourse, shotGrade);
                     ShotSimulator sim = new ShotSimulator();
                     ShotResult result = new ShotResult();
                     Console.WriteLine ("---------------------------------------");
-                    Console.WriteLine ("New Shot");
+                    Console.WriteLine (play.player.playerFullName + " steps up to his " + (holeScore+1) + " shot on hole number " + holeNumber);
+                    Console.WriteLine ("This is a " + golfCourse.course.holes[holeNumber-1].holeYardage + " yard Par: " + golfCourse.course.holes[holeNumber-1].holePar);
+                    Console.WriteLine("Ball is " + shot.lie + " in the " + shot.location);
+                    //Thread.Sleep(5000);
                     //Determinate Shot Difficulty and Player Skill Rating
+                    Console.WriteLine("The Player pulls " + shot.club + " and is attempting a " + shot.shotType + " shot");
+                    //Thread.Sleep(5000);
                     Console.WriteLine("shotDifficulty: " + shot.shotDifficulty + " playerSkill: " + play.playerOverallSkill);
-                    Console.WriteLine("Club choice is: " + shot.clubName + " Shot Type was: " + shot.shotTypeName);
-                    Console.WriteLine("Lie was: " + shot.lieName + " Location was: " + shot.locationName);
                     //Simulate the shot
                     shotSim = sim.ShotGenerator(shot.shotDifficulty, play.playerOverallSkill);
-                    Console.WriteLine("Shot Percent was: " + sim.shotPercentage + " Random was: "+ sim.perCent);
-                    Console.WriteLine("Shot was: " + shotSim);
+                    Console.WriteLine("The Percent to hit the shot was " + sim.shotPercentage);
+                    //Thread.Sleep(5000);
+                    Console.WriteLine("Was the shot good: " + shotSim  + " The random number generated was "+ sim.perCent);
                     //Shot Grading
                     shotPercent = Convert.ToInt32(sim.shotPercentage);
                     shotGrade = result.getShotResultsGrade(shotPercent, sim.perCent, shotSim);
                     baseShot = shot.getClubBaseDistance(shot.club);
                     Console.WriteLine("Shot Grade was: " + shotGrade);
+                   // Thread.Sleep(5000);
                     //Shot Distance
-                    distance = result.getShotResultsYards(play, shot.club, shot.shotTraj, 
+                    distance = result.getShotResultsYards(play, shot.shotTraj, 
                                                             shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot, shot.shotType, distanceToHole);
                     distanceToHole = result.getDistanceToHole(distanceToHole, distance);
                     Console.WriteLine("Ball went: " + distance + " Distance Left is: " + distanceToHole);
+                    //Thread.Sleep(5000);
                     Console.WriteLine ("End Shot");
                     Console.WriteLine ("---------------------------------------");
                     //Thread.Sleep(10000);

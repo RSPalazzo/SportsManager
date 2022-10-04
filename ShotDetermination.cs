@@ -4,28 +4,24 @@ namespace SportsManager
 {
     class ShotDeterminer 
     {
-        public string lieName;
-        public string locationName; 
-        public string clubName;
-        public string shotTypeName;
+        public string lie;
+        public string location;
+        public string club;
+        public string shotType;
         public int weather;
         public int wind;    
         public int rain;  
         public int altitude; 
-        public int temp; 
-        public int lie;
-        public int location;
+        public int temp;
         public int grass;
-        public int club;
-        public int shotType;
         public int shotTraj;
         public int shotDifficulty;
-        public ShotDeterminer(int holeNumber, int holeShotNumber, int distanceToHole, Player play)
+        public ShotDeterminer(int holeNumber, int holeShotNumber, int distanceToHole, Player play, GolfCourse course, int grade)
         {
             weather = getWeatherRating();
             grass = getGrassRating();
-            int lieRating = getLieRating(holeShotNumber);
-            int locationRating = getLocationRating(holeShotNumber);            
+            int locationRating = getLocationRating(holeShotNumber, course, grade, holeNumber); 
+            int lieRating = getLieRating(holeShotNumber, location);
             getShot(distanceToHole, lie, location, play);
             int clubRating = getClubChoiceRating(club);
             int shotRating = getShotTypeRating(shotType);
@@ -44,130 +40,468 @@ namespace SportsManager
             int weatherRating = (wind + rain + altitude + temp);   
             return weatherRating;      
         }
-        int getLieRating(int shotNum)
-        {
-            int lieRating;
-            if (shotNum == 0) {
-               lie = 12;
-            }
-            else{ 
-                Random rand = new Random();
-                lie = rand.Next (0, 11);
-            }
-            switch (lie){
-                case 0:
-                    lieRating = 30;
-                    lieName = "Grain With";
-                    break;
-                case 1:
-                    lieRating = 40;
-                    lieName = "Grain Against";
-                    break;
-                case 2:
-                    lieRating = 50;
-                    lieName = "Tight";
-                    break;
-                case 3:
-                    lieRating = 60;
-                    lieName = "Fluffy";
-                    break;
-                case 4:
-                    lieRating = 150;
-                    lieName = "Buried";
-                    break;
-                case 5:
-                    lieRating = 200;
-                    lieName = "Fried Egg";
-                    break;
-                case 6:
-                    lieRating = 5000;
-                    lieName = "Unplayable";
-                    break;
-                case 7:
-                    lieRating = 120;
-                    lieName = "Downhill";
-                    break;
-                case 8:
-                    lieRating = 90;
-                    lieName = "Uphill";
-                    break;
-                case 9:
-                    lieRating = 100;
-                    lieName = "Ball Above Feet";
-                    break;
-                case 10:
-                    lieRating = 140;
-                    lieName = "Ball Below Feet";
-                    break;
-                case 11:
-                    lieRating = 100;
-                    lieName = "Divot";
-                    break;
-                default:
-                    lieRating = 0;
-                    lieName = "Tee";
-                    break;
-            }
-            return lieRating;
-        }
-        int getLocationRating(int shotNum)
+        int getLocationRating(int shotNum , GolfCourse course, int grade, int holeNumber)
         {
             int locationRating;
             if (shotNum == 0) {
-                location = 12;
+                location = "Tee Box";
             }
             else{ 
+                int fairway ;
+                int firstCut;
+                int rough;
+                int deepRough;
+                int sand;
+                int water;
+                int woods;
                 Random rand = new Random();
-                location = rand.Next (0, 9);
+                int rando = rand.Next (1, 100);
+                switch (grade){                   
+                    case 1:
+                        fairway = course.course.holes[holeNumber].holeLayout.fairway + course.course.holes[holeNumber].holeLayout.sand 
+                                        + course.course.holes[holeNumber].holeLayout.deepRough + course.course.holes[holeNumber].holeLayout.woods 
+                                        + course.course.holes[holeNumber].holeLayout.water;
+                        firstCut = fairway + course.course.holes[holeNumber].holeLayout.firstCut;
+                        if (rando <= fairway)
+                        {
+                            location = "Fairway";
+                        }
+                        else if (rando > fairway && rando <= firstCut)
+                        {
+                            location = "First Cut";
+                        }
+                        else
+                        {
+                            location = "Rough";
+                        }
+                        break;
+                    case 2:
+                        fairway = course.course.holes[holeNumber].holeLayout.fairway + course.course.holes[holeNumber].holeLayout.sand 
+                                    + course.course.holes[holeNumber].holeLayout.woods ;
+                        firstCut = fairway + course.course.holes[holeNumber].holeLayout.firstCut;
+                        rough = course.course.holes[holeNumber].holeLayout.rough + course.course.holes[holeNumber].holeLayout.water + firstCut;
+                        if (rando <= fairway)
+                        {
+                            location = "Fairway";
+                        }
+                        else if (rando > fairway && rando <= firstCut)
+                        {
+                            location = "First Cut";
+                        }
+                        else if (rando > firstCut && rando <= rough)
+                        {
+                            location = "Rough";
+                        }
+                        else
+                        {
+                            location = "Deep Rough";
+                        }
+                        break;
+                    case 3:
+                        fairway = course.course.holes[holeNumber].holeLayout.fairway; 
+                        firstCut = course.course.holes[holeNumber].holeLayout.firstCut + fairway;
+                        rough = course.course.holes[holeNumber].holeLayout.rough + firstCut + course.course.holes[holeNumber].holeLayout.woods;
+                        deepRough = course.course.holes[holeNumber].holeLayout.deepRough + rough;
+                        sand = course.course.holes[holeNumber].holeLayout.sand  + deepRough;
+                        water = course.course.holes[holeNumber].holeLayout.water + sand;
+                        if (rando <= fairway)
+                        {
+                            location = "Fairway";
+                        }
+                        else if (rando > fairway && rando <= firstCut)
+                        {
+                            location = "First Cut";
+                        }
+                        else if (rando > firstCut && rando <= rough)
+                        {
+                            location = "Rough";
+                        }
+                        else if (rando > rough && rando <= deepRough)
+                        {
+                            location = "Deep Rough";
+                        }
+                        else if (rando > deepRough && rando <= sand)
+                        {
+                            location = "Sand";
+                        }
+                        else
+                        {
+                            location = "Water";
+                        }
+                        break;
+                    case 4:
+                        fairway = course.course.holes[holeNumber].holeLayout.fairway; 
+                        firstCut = course.course.holes[holeNumber].holeLayout.firstCut + fairway;
+                        rough = course.course.holes[holeNumber].holeLayout.rough + firstCut;
+                        deepRough = course.course.holes[holeNumber].holeLayout.deepRough + rough;
+                        sand = course.course.holes[holeNumber].holeLayout.sand  + deepRough;
+                        water = course.course.holes[holeNumber].holeLayout.water + sand;
+                        woods = course.course.holes[holeNumber].holeLayout.woods + water;
+                        if (rando <= fairway)
+                        {
+                            location = "Fairway";
+                        }
+                        else if (rando > fairway && rando <= firstCut)
+                        {
+                            location = "First Cut";
+                        }
+                        else if (rando > firstCut && rando <= rough)
+                        {
+                            location = "Rough";
+                        }
+                        else if (rando > rough && rando <= deepRough)
+                        {
+                            location = "Deep Rough";
+                        }
+                        else if (rando > deepRough && rando <= sand)
+                        {
+                            location = "Sand";
+                        }
+                        else if (rando > sand && rando <= water)
+                        {
+                            location = "Water";
+                        }
+                        else
+                        {
+                            location = "Woods";
+                        }
+                        break;
+                    case 5:
+                        firstCut = course.course.holes[holeNumber].holeLayout.firstCut;
+                        rough = course.course.holes[holeNumber].holeLayout.rough + firstCut;
+                        deepRough = course.course.holes[holeNumber].holeLayout.deepRough + course.course.holes[holeNumber].holeLayout.fairway + rough;
+                        sand = course.course.holes[holeNumber].holeLayout.sand  + deepRough;
+                        water = course.course.holes[holeNumber].holeLayout.water + sand;
+                        woods = course.course.holes[holeNumber].holeLayout.woods + water;
+                        if (rando <= firstCut)
+                        {
+                            location = "First Cut";
+                        }
+                        else if (rando > firstCut && rando <= rough)
+                        {
+                            location = "Rough";
+                        }
+                        else if (rando > rough && rando <= deepRough)
+                        {
+                            location = "Deep Rough";
+                        }
+                        else if (rando > deepRough && rando <= sand)
+                        {
+                            location = "Sand";
+                        }
+                        else if (rando > sand && rando <= water)
+                        {
+                            location = "Water";
+                        }
+                        else
+                        {
+                            location = "Woods";
+                        }
+                        break;
+                    case 6:
+                        rough = course.course.holes[holeNumber].holeLayout.rough + course.course.holes[holeNumber].holeLayout.firstCut;
+                        deepRough = course.course.holes[holeNumber].holeLayout.deepRough + course.course.holes[holeNumber].holeLayout.fairway + rough;
+                        sand = course.course.holes[holeNumber].holeLayout.sand  + deepRough;
+                        water = course.course.holes[holeNumber].holeLayout.water + sand;
+                        woods = course.course.holes[holeNumber].holeLayout.woods + water;
+                        if (rando <= rough)
+                        {
+                            location = "Rough";
+                        }
+                        else if (rando > rough && rando <= deepRough)
+                        {
+                            location = "Deep Rough";
+                        }
+                        else if (rando > deepRough && rando <= sand)
+                        {
+                            location = "Sand";
+                        }
+                        else if (rando > sand && rando <= water)
+                        {
+                            location = "Water";
+                        }
+                        else
+                        {
+                            location = "Woods";
+                        }
+                        break;
+                    default:
+                        deepRough = course.course.holes[holeNumber].holeLayout.deepRough + course.course.holes[holeNumber].holeLayout.fairway 
+                                    + course.course.holes[holeNumber].holeLayout.rough + course.course.holes[holeNumber].holeLayout.firstCut;
+                        sand = course.course.holes[holeNumber].holeLayout.sand  + deepRough;
+                        water = course.course.holes[holeNumber].holeLayout.water + sand;
+                        woods = course.course.holes[holeNumber].holeLayout.woods + water;
+                        if (rando <= deepRough)
+                        {
+                            location = "Deep Rough";
+                        }
+                        else if (rando > deepRough && rando <= sand)
+                        {
+                            location = "Sand";
+                        }
+                        else if (rando > sand && rando <= water)
+                        {
+                            location = "Water";
+                        }
+                        else
+                        {
+                            location = "Woods";
+                        }
+                        break;
+                }
             }
-
             switch (location){
-                case 0:
+                case "Fairway":
                     locationRating = 30;
-                    locationName = "Fairway";
                     break;
-                case 1:
+                case "First Cut":
                     locationRating = 50;
-                    locationName = "First Cut";
                     break;
-                case 2:
+                case "Rough":
                     locationRating = 100;
-                    locationName = "Rough";
                     break;
-                case 3:
+                case "Deep Rough":
                     locationRating = 200;
-                    locationName = "Deep Rough";
                     break;
-                case 4:
-                    locationRating = 100;
-                    locationName = "Pinestraw";
+                case "Woods":
+                    locationRating = 250;
                     break;
-                case 5:
-                    locationRating = 130;
-                    locationName = "Mulch";
+                case "Water":
+                    locationRating = 250;
                     break;
-                case 6:
+                case "Sand":
                     locationRating = 150;
-                    locationName = "Sand";
                     break;
-                case 7:
+                case "Cart Path":
                     locationRating = 200;
-                    locationName = "Cart Path";
                     break;
-                case 8:
+                case "Obstructed":
                     locationRating = 250;
-                    locationName = "Obstructed";
                     break;
-                case 9:
+                case "Behind Something":
                     locationRating = 250;
-                    locationName = "Behind Something";
                     break;
                 default:
-                    locationRating = 0;
-                    locationName = "Tee"; 
+                    locationRating = 0;   
                     break;
             }
             return locationRating;
+        }
+        int getLieRating(int shotNum, string location)
+        {
+            int lieRating;
+            if (shotNum == 0) {
+               lie = "Teed Up";
+            }
+            else{ 
+                Random rand = new Random();
+                int rando = rand.Next (0, 7);
+                switch(location)
+                {
+                    case "Fairway":
+                        if (rando == 0)
+                        {
+                            lie = "Grain With";
+                        }
+                        else if (rando == 1)
+                        {
+                            lie = "Grain Against";
+                        }
+                        else if (rando == 2)
+                        {
+                            lie = "Divot";
+                        }
+                        else if (rando == 3)
+                        {
+                            lie = "Uphill";
+                        }
+                        else if (rando == 4)
+                        {
+                            lie = "Downhill";
+                        }        
+                        else if (rando == 5)
+                        {
+                            lie = "Ball Above Feet";
+                        }
+                        else if (rando == 6)
+                        {
+                            lie = "Ball Below Feet";
+                        }
+                        else
+                        {
+                            lie = "Tight";
+                        }                   
+                        break;
+                    case "First Cut":
+                        if (rando == 0)
+                        {
+                            lie = "Grain With";
+                        }
+                        else if (rando == 1)
+                        {
+                            lie = "Grain Against";
+                        }
+                        else if (rando == 2)
+                        {
+                            lie = "Divot";
+                        }
+                        else if (rando == 3)
+                        {
+                            lie = "Uphill";
+                        }
+                        else if (rando == 4)
+                        {
+                            lie = "Downhill";
+                        }        
+                        else if (rando == 5)
+                        {
+                            lie = "Ball Above Feet";
+                        }
+                        else if (rando == 6)
+                        {
+                            lie = "Ball Below Feet";
+                        }
+                        else
+                        {
+                            lie = "Tight";
+                        }    
+                        break;
+                    case "Rough":
+                        if (rando == 0)
+                        {
+                            lie = "Grain With";
+                        }
+                        else if (rando == 1)
+                        {
+                            lie = "Grain Against";
+                        }
+                        else if (rando == 2)
+                        {
+                            lie = "Fluffy";
+                        }
+                        else if (rando == 3)
+                        {
+                            lie = "Uphill";
+                        }
+                        else if (rando == 4)
+                        {
+                            lie = "Downhill";
+                        }        
+                        else if (rando == 5)
+                        {
+                            lie = "Ball Above Feet";
+                        }
+                        else if (rando == 6)
+                        {
+                            lie = "Ball Below Feet";
+                        }
+                        else
+                        {
+                            lie = "Buried";
+                        }    
+                        break;
+                    case "Deep Rough":
+                        if (rando == 0)
+                        {
+                            lie = "Grain With";
+                        }
+                        else if (rando == 1)
+                        {
+                            lie = "Grain Against";
+                        }
+                        else if (rando == 2)
+                        {
+                            lie = "Fluffy";
+                        }
+                        else if (rando == 3)
+                        {
+                            lie = "Uphill";
+                        }
+                        else if (rando == 4)
+                        {
+                            lie = "Downhill";
+                        }        
+                        else if (rando == 5)
+                        {
+                            lie = "Ball Above Feet";
+                        }
+                        else if (rando == 6)
+                        {
+                            lie = "Ball Below Feet";
+                        }
+                        else
+                        {
+                            lie = "Buried";
+                        } 
+                        break;
+                    case "Woods":
+                        lie = "Hard Pan";
+                        break;
+                    case "Water":
+                        lie = "Unplayable";
+                        break;
+                    case "Sand":
+                        if (rando <= 5)
+                        {
+                            lie = "Tight";
+                        }
+                        else
+                        {
+                            lie = "Fried Egg";
+                        } 
+                        break;
+                    case "Cart Path":
+                        break;
+                    case "Obstructed":
+                        break;
+                    case "Behind Something":
+                        break;
+                    default:
+                        break;
+                }
+            }
+            switch (lie){
+                case "Grain With":
+                    lieRating = 30;
+                    break;
+                case "Grain Against":
+                    lieRating = 40;
+                    break;
+                case "Tight":
+                    lieRating = 50;
+                    break;
+                case "Fluffy":
+                    lieRating = 60;
+                    break;
+                case "Buried":
+                    lieRating = 150;
+                    break;
+                case "Fried Egg":
+                    lieRating = 200;
+                    break;
+                case "Unplayable":
+                    lieRating = 5000;
+                    break;
+                case "Downhill":
+                    lieRating = 120;
+                    break;
+                case "Uphill":
+                    lieRating = 90;
+                    break;
+                case "Ball Above Feet":
+                    lieRating = 100;
+                    break;
+                case "Ball Below Feet":
+                    lieRating = 140;
+                    break;
+                case "Divot":
+                    lieRating = 100;
+                    break;
+                default:
+                    lieRating = 150;
+                    break;
+            }
+            return lieRating;
         }
         int getGrassRating()
         {
@@ -199,38 +533,38 @@ namespace SportsManager
             }
             return grassRating;
         }
-        int getClubChoiceRating(int clubChoice)
+        int getClubChoiceRating(string clubChoice)
         {
             int clubRating;
             switch (clubChoice){
-                case 0:
+                case "Driver":
                     clubRating = 100;
                     break;
-                case 1:
+                case "Driving Iron":
                     clubRating = 90;
                     break;
-                case 2:
+                case "Lob Wedge":
                     clubRating = 80;
                     break;
-                case 3:
+                case "Wood":
                     clubRating = 70;
                     break;
-                case 4:
+                case "Long Iron":
                     clubRating = 60;
                     break;
-                case 5:
+                case "Hybrid":
                     clubRating = 50;
                     break;
-                case 6:
+                case "Mid Iron":
                     clubRating = 40;
                     break;
-                case 7:
+                case "Short Iron":
                     clubRating = 30;
                     break;
-                case 8:
+                case "Wedge":
                     clubRating = 20;
                     break;
-                case 9:
+                case "Putter":
                     clubRating = 10;
                     break;
                 default:
@@ -239,44 +573,38 @@ namespace SportsManager
             }
             return clubRating;
         }
-        int getShotTypeRating(int shotT)
+        int getShotTypeRating(string shotT)
         {
             int shotTypeRating;
             switch (shotT){
-                case 0:
+                case "Full Swing":
                     shotTypeRating = 100;
                     break;
-                case 1:
+                case "Layup":
                     shotTypeRating = 50;
                     break;
-                case 2:
+                case "Back in Play":
                     shotTypeRating = 20;
                     break;
-                case 3:
+                case "Pitch":
                     shotTypeRating = 80;
                     break;
-                case 4:
-                    shotTypeRating = 80;
-                    break;
-                case 5:
+                case "Bump and Run":
                     shotTypeRating = 40;
                     break;
-                case 6:
+                case "Chip Shot":
                     shotTypeRating = 70;
                     break;
-                case 7:
+                case "Hinge and Hold":
                     shotTypeRating = 55;
                     break;
-                case 8:
-                    shotTypeRating = 160;
-                    break;
-                case 9:
+                case "Flop Shot":
                     shotTypeRating = 200;
                     break;
-                case 10:
+                case "Greenside Bunker":
                     shotTypeRating = 150;
                     break;
-                case 11:
+                case "Step on it":
                     shotTypeRating = 200; 
                     break;
                 default:
@@ -327,121 +655,87 @@ namespace SportsManager
             }
             return shotTrajRating;
         }
-        void getShot(int distanceToHole, int shotLie, int shotLocation, Player player)
+        void getShot(int distanceToHole, string shotLie, string shotLocation, Player player)
         {            
-            if (shotLie == 6)
+            if (shotLie == "Unplayable")
             {
                 //Take Drop
             }
             else
             {
-                if (shotLocation == 9)
-                {
-                    //Back in Play
-                }
-                else if (shotLocation == 8)
-                {
-                    //Layup or //Back in play
-                }
-                else
-                {
-                    //assess weather
-                    bool reachable = getHoleReachability(distanceToHole, 0, player);
-                    if (reachable == true)
-                    {
-                        club = getClubChoice(distanceToHole);
-                        shotType = getShotType(distanceToHole, lie, location, player);
-                    }
-                    else
-                    {
-                        //Calculate good leave distance
-                        club = getClubChoice(distanceToHole);
-                        shotType = getShotType(distanceToHole, lie, location, player);
-                    }
-                }
+                //assess weather
+                //Calculate good leave distance
+                getClubChoice(distanceToHole);
+                getShotType(distanceToHole, lie, location, player);
+
+            
             }
         }
-        int getClubChoice(int distanceToHole)
+        void getClubChoice(int distanceToHole)
         {
-            int clubChoice;
             if (distanceToHole > 300)
             {
-                clubChoice = 0;
-                clubName = "Driver";
+                club = "Driver";
             }
             else if (distanceToHole > 250 && distanceToHole <= 265)
             {
-                clubChoice = 1;
-                clubName = "Driving Iron";
+                club = "Driving Iron";
             }
             else if (distanceToHole > 265 && distanceToHole <= 300)
             {
-                clubChoice = 3;
-                clubName = "Wood";
+                club = "Wood";
             }
             else if (distanceToHole > 120 && distanceToHole <= 165)
             {
-                clubChoice = 8;
-                clubName = "Wedge";
+                club = "Wedge";
             }
             else if (distanceToHole > 165 && distanceToHole <= 185)
             {
-                clubChoice = 7;
-                clubName = "Short Iron";
+                club = "Short Iron";
             }
             else if (distanceToHole > 185 && distanceToHole <= 210)
             {
-                clubChoice = 6;
-                clubName = "Mid Iron";
+                club = "Mid Iron";
             }
             else if (distanceToHole > 210 && distanceToHole <= 235)
             {
-                clubChoice = 4;
-                clubName = "Long Iron";
+                club = "Long Iron";
             }
             else if (distanceToHole > 235 && distanceToHole <= 265)
             {
-                clubChoice = 5;
-                clubName = "Hybrid";
+                club = "Hybrid";
             }
             else
             {
-                clubChoice = 8;
-                clubName = "Wedge";
+                club = "Wedge";
             }
-            return clubChoice;
         }
-        int getShotType(int shotDistanceToHole, int shotLie, int shotLocation, Player playerShotType)
+        void getShotType(int shotDistanceToHole, string shotLie, string shotLocation, Player playerShotType)
         {  
-            int shotTy;
-            bool fullSwing = getHoleReachability(shotDistanceToHole, 0, playerShotType);
+            //TODO: Fix Club Choice and Reachability to account for Wind and Temp etc.
+            bool fullSwing = getHoleReachability(shotDistanceToHole, club, playerShotType);
             if (fullSwing == true)
             {
-                shotTy = 0;
-                shotTypeName = "Full Swing";
+                shotType = "Full Swing";
             }
             else if (fullSwing == false && shotDistanceToHole > 30)
             {
-                shotTy = 3;
-                shotTypeName = "Pitch";
+                shotType = "Pitch";
             }
-            else if (fullSwing == false && shotDistanceToHole <= 30 && shotLocation == 6)
+            else if (fullSwing == false && shotDistanceToHole <= 30 && shotLocation == "Sand")
             {
-                shotTy = 10;
-                shotTypeName = "Greenside Bunker";
+                shotType = "Greenside Bunker";
             }
-            else if (fullSwing == false && shotDistanceToHole <= 30 && shotLocation != 6)
+            else if (fullSwing == false && shotDistanceToHole <= 30 && shotLocation != "Sand")
             {
-                shotTy = getChipShotType(shotLie, shotLocation);
+                getChipShotType(shotLie);
             }
             else
             {
-                shotTy = 8;
-                shotTypeName = "Flop Shot";
+                shotType = "Flop Shot";
             }
-            return shotTy;
         }
-        bool getHoleReachability (int distanceToHole, int clubDistanceSim, Player playerr)
+        bool getHoleReachability (int distanceToHole, string clubDistanceSim, Player playerr)
         {
             
             int strength = playerr.player.attributes.physical.strength;
@@ -456,63 +750,85 @@ namespace SportsManager
             int demeanor = playerr.player.attributes.mental.demeanor;
             int condition = playerr.player.attributes.playerCondition;
             int baseDistance = getClubBaseDistance(clubDistanceSim);
-            int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality + demeanor + condition + grass + rain + altitude + temp + baseDistance);
-            if (totalYards < distanceToHole)
-            {
-                return true;
+            int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality 
+                                + demeanor + condition + grass + rain + altitude + temp + baseDistance);
+            Console.WriteLine(totalYards);
+            if (totalYards > distanceToHole)
+            { 
+                if (club != "Driver")
+                {
+                    int rightClub = totalYards - distanceToHole;
+                    if (rightClub <= 20 && rightClub >= -20)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        // TODO: Club down if you can
+                        Console.WriteLine("IDK MAN");
+                        return false;   
+                    }
+                }
+                else
+                {
+                    return true;
+                } 
             }
             else
             {
-                return false;
+                if (club == "Driver")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
-        int getChipShotType(int shotLie, int shotLocation)
+        void getChipShotType(string shotLie)
         {
-            int shotTy = 8;
-            if (shotLocation == 0)
+            if (shotLie == "Grain With" || shotLie == "Grain Against")
             {
-                shotTy = 6;
-                shotTypeName = "Chip Shot";
+                shotType = "Chip Shot";
             }
-            else if (shotLocation != 0)
+            else if (shotLie != "Grain With" || shotLie != "Grain Against")
             {
-                shotTy = 7;
-                shotTypeName = "Hinge and Hold";
+                shotType = "Hinge and Hold";
             }
-            return shotTy;
         }
-        public int getClubBaseDistance(int clubChoice)
+        public int getClubBaseDistance(string clubChoice)
         {
             int clubYards;
             switch (clubChoice){
-                case 0:
+                case "Driver":
                     clubYards = 200;
                     break;
-                case 1:
+                case "Driving Iron":
                     clubYards = 120;
                     break;
-                case 2:
+                case "Lob Wedge":
                     clubYards  = 0;
                     break;
-                case 3:
+                case "Wood":
                     clubYards  = 140;
                     break;
-                case 4:
+                case "Long Iron":
                     clubYards  = 80;
                     break;
-                case 5:
+                case "Hybrid":
                     clubYards  = 100;
                     break;
-                case 6:
+                case "Mid Iron":
                     clubYards  = 60;
                     break;
-                case 7:
+                case "Short Iron":
                     clubYards  = 40;
                     break;
-                case 8:
+                case "Wedge":
                     clubYards  = 20;
                     break;
-                case 9:
+                case "Putter":
                     clubYards  = 10;
                     break;
                 default:
