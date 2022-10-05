@@ -47,35 +47,37 @@ namespace SportsManager
                     Console.WriteLine (play.player.playerFullName + " steps up to his " + (holeScore+1) + " shot on hole number " + holeNumber);
                     Console.WriteLine ("This is a " + golfCourse.course.holes[holeNumber-1].holeYardage + " yard Par: " + golfCourse.course.holes[holeNumber-1].holePar);
                     Console.WriteLine("Ball is " + shot.lie + " in the " + shot.location);
-                    //Thread.Sleep(5000);
+                    Thread.Sleep(5000);
                     //Determinate Shot Difficulty and Player Skill Rating
                     Console.WriteLine("The Player pulls " + shot.club + " and is attempting a " + shot.shotType + " shot");
-                    //Thread.Sleep(5000);
+                    Thread.Sleep(5000);
                     Console.WriteLine("shotDifficulty: " + shot.shotDifficulty + " playerSkill: " + play.playerOverallSkill);
                     //Simulate the shot
                     shotSim = sim.ShotGenerator(shot.shotDifficulty, play.playerOverallSkill);
                     Console.WriteLine("The Percent to hit the shot was " + sim.shotPercentage);
-                    //Thread.Sleep(5000);
+                    Thread.Sleep(5000);
                     Console.WriteLine("Was the shot good: " + shotSim  + " The random number generated was "+ sim.perCent);
                     //Shot Grading
                     shotPercent = Convert.ToInt32(sim.shotPercentage);
                     shotGrade = result.getShotResultsGrade(shotPercent, sim.perCent, shotSim);
                     baseShot = shot.getClubBaseDistance(shot.club);
                     Console.WriteLine("Shot Grade was: " + shotGrade);
-                   // Thread.Sleep(5000);
+                    Thread.Sleep(5000);
                     //Shot Distance
                     distance = result.getShotResultsYards(play, shot.shotTraj, 
                                                             shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot, shot.shotType, distanceToHole);
                     distanceToHole = result.getDistanceToHole(distanceToHole, distance);
-                    Console.WriteLine("Ball went: " + distance + " Distance Left is: " + distanceToHole);
-                    //Thread.Sleep(5000);
+                    Console.WriteLine("Ball went: " + distance + " yards Distance Left is: " + distanceToHole + " yards");
+                    Thread.Sleep(5000);
                     Console.WriteLine ("End Shot");
                     Console.WriteLine ("---------------------------------------");
-                    //Thread.Sleep(10000);
+                    Thread.Sleep(10000);
                     //Add Shot to score and check if your on green
                     holeScore++;
-                    ballIsHoled = generateIsBallInHole(distanceToHole);
-                    
+                    if (distanceToHole <= golfCourse.course.holes[holeNumber-1].green.size)
+                    {
+                        ballIsHoled = generateIsBallInHole(distanceToHole);
+                    } 
                 }
                 //If Ball is in the hole go to next hole
                 else if (isRoundOver == false && ballIsHoled == true)
@@ -96,22 +98,18 @@ namespace SportsManager
         }
         bool generateIsBallInHole(int distanceToHole)
         {
-            if (distanceToHole <= 8)
+            while (distanceToHole > 0)
             {
+                PuttDeterminer putt = new PuttDeterminer();
+                int puttDifficulty = putt.getPuttDifficulty(golfCourse, holeNumber-1, distanceToHole);
+                int playerPuttingSkill = putt.getPlayerPuttingSkill(play);
+                ShotSimulator sim = new ShotSimulator();
+                bool shotSim = sim.ShotGenerator(puttDifficulty, playerPuttingSkill);
+                distanceToHole = getPuttGrade();
                 holeScore = holeScore + 1;
-                Console.WriteLine("Hole Score is: " + holeScore);
-                return true;
             }
-            else if (distanceToHole <= 30)
-            {
-                holeScore = holeScore + 2;
-                Console.WriteLine("Hole Score is: " + holeScore);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Console.WriteLine("Hole Score is " + holeScore);
+            return true;
         }
         bool getIsRoundOver()
         {

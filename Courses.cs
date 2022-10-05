@@ -30,7 +30,8 @@ namespace SportsManager
             public int holePar { get; set; }
             public int holeHandicap { get; set; }
             public int holeYardage { get; set; }
-            public HoleLayout holeLayout {get; set;}      
+            public HoleLayout holeLayout {get; set;}
+            public Green green {get; set;}      
     }
     public class HoleLayout 
     {
@@ -41,5 +42,14 @@ namespace SportsManager
         public int sand {get; set;}
         public int water {get; set;}
         public int deepRough {get; set;}
+    }
+    public class Green 
+    {
+        public int size {get; set;}
+        public int uphill {get; set;}
+        public int sidehill {get; set;}
+        public int downhill {get; set;}
+        public int stimp {get; set;}
+        public int complex {get; set;}
     }
 }

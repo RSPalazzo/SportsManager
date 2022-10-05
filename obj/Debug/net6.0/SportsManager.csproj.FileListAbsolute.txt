@@ -1,0 +1,17 @@
+/home/rpalazzo123/git/SportsManager-3/bin/Debug/net6.0/SportsManager
+/home/rpalazzo123/git/SportsManager-3/bin/Debug/net6.0/SportsManager.deps.json
+/home/rpalazzo123/git/SportsManager-3/bin/Debug/net6.0/SportsManager.runtimeconfig.json
+/home/rpalazzo123/git/SportsManager-3/bin/Debug/net6.0/SportsManager.dll
+/home/rpalazzo123/git/SportsManager-3/bin/Debug/net6.0/SportsManager.pdb
+/home/rpalazzo123/git/SportsManager-3/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.csproj.AssemblyReference.cache
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.GeneratedMSBuildEditorConfig.editorconfig
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.AssemblyInfoInputs.cache
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.AssemblyInfo.cs
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.csproj.CoreCompileInputs.cache
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.csproj.CopyComplete
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.dll
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/refint/SportsManager.dll
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.pdb
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/SportsManager.genruntimeconfig.cache
+/home/rpalazzo123/git/SportsManager-3/obj/Debug/net6.0/ref/SportsManager.dll
