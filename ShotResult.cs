@@ -85,19 +85,19 @@ namespace SportsManager
             switch (shotGr)
             {
                 case 1:
-                    yards = rand.Next (0, 5);
+                    yards = rand.Next (0, 3);
                     break;
                 case 2:
-                    yards = rand.Next (6, 8);
+                    yards = rand.Next (4, 6);
                     break;
                 case 3:
-                    yards = rand.Next (9, 12);
+                    yards = rand.Next (7, 10);
                     break;
                 case 4:
-                    yards = rand.Next (13, 18);
+                    yards = rand.Next (11, 20);
                     break;
                 case 5:
-                    yards = rand.Next (19, 30);
+                    yards = rand.Next (21, 30);
                     break;
                 case 6:
                     yards = rand.Next (31, 50);

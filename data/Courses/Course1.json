@@ -29,7 +29,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -55,7 +55,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -81,7 +81,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -107,7 +107,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -133,7 +133,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -159,7 +159,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -185,7 +185,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -211,7 +211,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -237,7 +237,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -263,7 +263,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -289,7 +289,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -315,7 +315,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -341,7 +341,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -367,7 +367,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -393,7 +393,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -419,7 +419,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -445,7 +445,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		},
 		{
@@ -471,7 +471,7 @@
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
-				"complex": 50
+				"complex": 25
 			}
 		}			
 	]
