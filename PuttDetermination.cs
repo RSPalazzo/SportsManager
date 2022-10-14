@@ -49,7 +49,7 @@ namespace SportsManager
                 }
             }
             int difficulty = gc.course.holes[holeNum].green.complex + gc.course.holes[holeNum].green.stimp + lieDiff;
-            difficulty = (difficulty + distanceToHole);
+            difficulty = Convert.ToInt32(difficulty + (distanceToHole * 1.5));
             return difficulty;
         }
         public int getPlayerPuttingSkill(Player p)

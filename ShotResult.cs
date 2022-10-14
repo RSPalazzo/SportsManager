@@ -12,11 +12,11 @@ namespace SportsManager
             // TODO: Deal with 5< shot percentages
             if (shot == true)
             {
-                if (postAbsGrade <= 5)
+                if (postAbsGrade <= 15)
                 {
                     ShotGrade = 1;                
                 }
-                else if (postAbsGrade > 5 && postAbsGrade <= 30)
+                else if (postAbsGrade > 15 && postAbsGrade <= 40)
                 {
                     ShotGrade = 2;
                 }
@@ -27,15 +27,15 @@ namespace SportsManager
             }
             else
             {
-                if (postAbsGrade <= 5)
+                if (postAbsGrade <= 15)
                 {
                     ShotGrade = 4;                
                 }
-                else if (postAbsGrade > 5 && postAbsGrade <= 30)
+                else if (postAbsGrade > 15 && postAbsGrade <= 40)
                 {
                     ShotGrade = 5;
                 }
-                else if (postAbsGrade > 30 && postAbsGrade <= 60)
+                else if (postAbsGrade > 40 && postAbsGrade <= 70)
                 {
                     ShotGrade = 6;
                 }
@@ -86,6 +86,18 @@ namespace SportsManager
             {
                 case 1:
                     yards = rand.Next (0, 3);
+                    if (yards == 0)
+                    {
+                        yards = rand.Next(0, 10);
+                        if (yards == 0)
+                        {
+                            yards = 0;
+                        }
+                        else
+                        {
+                            yards = 1;
+                        }
+                    }
                     break;
                 case 2:
                     yards = rand.Next (4, 6);

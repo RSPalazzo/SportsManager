@@ -14,6 +14,7 @@ namespace SportsManager
         bool ballIsHoled = false;
         bool isRoundOver = false;
         int puttsPerRound;
+        Result resultJson = new Result();
         public GolfRound (int courseId, int playerId)
         {
             golfCourse = new GolfCourse(courseId);
@@ -21,7 +22,8 @@ namespace SportsManager
             holeScore = 0;
             roundScore = 0;
             holeNumber = 1;
-            ballIsHoled = false;
+            ballIsHoled = false;  
+            resultJson.SetResult(play.player.playerFullName, 1);              
             playRound();
         }
         void playRound()
@@ -75,6 +77,9 @@ namespace SportsManager
                     //Thread.Sleep(5000);
                     //Add Shot to score and check if your on green
                     holeScore++;
+                    resultJson.SetShot(holeNumber, holeScore, shot.club, shot.shotType, shot.lie, shot.location, shot.shotDifficulty, 
+                            play.playerOverallSkill, sim.perCent, shotSim, Convert.ToInt32(sim.shotPercentage), shotGrade, distance, distanceToHole);
+                    
                     if (distanceToHole <= golfCourse.course.holes[holeNumber-1].green.size)
                     {
                         ballIsHoled = generateIsBallInHole(distanceToHole);
@@ -84,8 +89,10 @@ namespace SportsManager
                 else if (isRoundOver == false && ballIsHoled == true)
                 {
                     roundScore = roundScore + holeScore;
+                    resultJson.SetHoleScore(holeNumber, holeScore);
                     holeScore = 0;
                     holeNumber++;
+                    resultJson.SetHole(holeNumber, golfCourse.course.holes[holeNumber-1].holeYardage, golfCourse.course.holes[holeNumber-1].holePar);                    
                     distanceToHole = golfCourse.course.holes[holeNumber-1].holeYardage;
                     distance = 0;
                     ballIsHoled = false;
@@ -94,9 +101,12 @@ namespace SportsManager
                 else
                 {
                     roundScore = roundScore + holeScore;
+                    Console.WriteLine ("---------------------------------------");
                     Console.WriteLine("Round Score: " + roundScore);
                     Console.WriteLine("Putts Per Round " + puttsPerRound);
+                    Console.WriteLine ("---------------------------------------");
                     Thread.Sleep(5000);
+                    resultJson.SetRoundScore(roundScore);
                 }
             }
         }
@@ -112,6 +122,7 @@ namespace SportsManager
                 ShotSimulator sim = new ShotSimulator();
                 bool shotSim = sim.ShotGenerator(puttDifficulty, playerPuttingSkill);
                 int shotPercent = Convert.ToInt32(sim.shotPercentage);
+                int preDistance = distanceToHole;
                 Console.WriteLine("Putt is " + distanceToHole + " feet");
                 distanceToHole = putt.getPuttGrade(shotPercent, sim.perCent, shotSim, distanceToHole);
                 Console.WriteLine("The Percent to hit the shot was " + sim.shotPercentage);
@@ -120,9 +131,12 @@ namespace SportsManager
                 Console.WriteLine("Distance left " + distanceToHole + "feet");
                 //Thread.Sleep(5000);
                 holeScore = holeScore + 1;
+                resultJson.SetPutt(holeNumber, holeScore, preDistance, putt.puttGrade, sim.perCent, puttDifficulty, playerPuttingSkill, shotSim, Convert.ToInt32(sim.shotPercentage), distanceToHole);
                 puttsPerRound++;
             }
+            Console.WriteLine ("---------------------------------------");
             Console.WriteLine("Hole Score is " + holeScore);
+            Console.WriteLine ("---------------------------------------");
             return true;
         }
         bool getIsRoundOver()
