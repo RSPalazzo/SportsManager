@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QFxFzkxgsIDHCQXbeNtvqN3TOiQW5WAJw++LnSxbVWDW8Dr8NVlKAnQy6HUOpkLloxe7wgzbTAS9a0F70CsiqA==",
+  "dgSpecHash": "i6m22lzV5osIuOTvJNmL1uGTQgFEduddSFL8Hd5hqVGmApk78wRnCf50OHzXoc79zxoDhJR5ky0I252WDeDRxA==",
   "success": true,
-  "projectFilePath": "/home/rpalazzo123/git/SportsManager-3/SportsManager.csproj",
+  "projectFilePath": "C:\\Users\\rpala\\git\\SportsManager\\SportsManager.csproj",
   "expectedPackageFiles": [
-    "/home/rpalazzo123/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\rpala\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
