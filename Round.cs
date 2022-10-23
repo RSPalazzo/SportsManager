@@ -23,7 +23,7 @@ namespace SportsManager
             roundScore = 0;
             holeNumber = 1;
             ballIsHoled = false;  
-            resultJson.SetResult(play.player.playerFullName, 1);              
+            //resultJson.SetResult(play.player.playerFullName, 1);              
             playRound();
         }
         void playRound()
@@ -77,8 +77,8 @@ namespace SportsManager
                     //Thread.Sleep(5000);
                     //Add Shot to score and check if your on green
                     holeScore++;
-                    resultJson.SetShot(holeNumber, holeScore, shot.club, shot.shotType, shot.lie, shot.location, shot.shotDifficulty, 
-                            play.playerOverallSkill, sim.perCent, shotSim, Convert.ToInt32(sim.shotPercentage), shotGrade, distance, distanceToHole);
+                    //resultJson.SetShot(holeNumber, holeScore, shot.club, shot.shotType, shot.lie, shot.location, shot.shotDifficulty, 
+                    //        play.playerOverallSkill, sim.perCent, shotSim, Convert.ToInt32(sim.shotPercentage), shotGrade, distance, distanceToHole);
                     
                     if (distanceToHole <= golfCourse.course.holes[holeNumber-1].green.size)
                     {
@@ -89,10 +89,10 @@ namespace SportsManager
                 else if (isRoundOver == false && ballIsHoled == true)
                 {
                     roundScore = roundScore + holeScore;
-                    resultJson.SetHoleScore(holeNumber, holeScore);
+                    //resultJson.SetHoleScore(holeNumber, holeScore);
                     holeScore = 0;
                     holeNumber++;
-                    resultJson.SetHole(holeNumber, golfCourse.course.holes[holeNumber-1].holeYardage, golfCourse.course.holes[holeNumber-1].holePar);                    
+                    //resultJson.SetHole(holeNumber, golfCourse.course.holes[holeNumber-1].holeYardage, golfCourse.course.holes[holeNumber-1].holePar);                    
                     distanceToHole = golfCourse.course.holes[holeNumber-1].holeYardage;
                     distance = 0;
                     ballIsHoled = false;
@@ -106,7 +106,7 @@ namespace SportsManager
                     Console.WriteLine("Putts Per Round " + puttsPerRound);
                     Console.WriteLine ("---------------------------------------");
                     Thread.Sleep(5000);
-                    resultJson.SetRoundScore(roundScore);
+                    //resultJson.SetRoundScore(roundScore);
                 }
             }
         }
@@ -131,7 +131,7 @@ namespace SportsManager
                 Console.WriteLine("Distance left " + distanceToHole + "feet");
                 //Thread.Sleep(5000);
                 holeScore = holeScore + 1;
-                resultJson.SetPutt(holeNumber, holeScore, preDistance, putt.puttGrade, sim.perCent, puttDifficulty, playerPuttingSkill, shotSim, Convert.ToInt32(sim.shotPercentage), distanceToHole);
+                //resultJson.SetPutt(holeNumber, holeScore, preDistance, putt.puttGrade, sim.perCent, puttDifficulty, playerPuttingSkill, shotSim, Convert.ToInt32(sim.shotPercentage), distanceToHole);
                 puttsPerRound++;
             }
             Console.WriteLine ("---------------------------------------");
