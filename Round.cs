@@ -70,6 +70,12 @@ namespace SportsManager
                     distance = result.getShotResultsYards(play, shot.shotTraj, 
                                                             shot.grass, shot.rain, shot.altitude, shot.temp, shotGrade, baseShot, shot.shotType, distanceToHole);
                     distanceToHole = result.getDistanceToHole(distanceToHole, distance);
+                    if (distance <= 0){
+                        Console.WriteLine("Ball went: " + Math.Abs(distanceToHole - distance) + " yards past the hole Distance Left is: " + distanceToHole + " yards");
+                    }
+                    else{
+                        Console.WriteLine("Ball went: " + distance + " yards Distance Left is: " + distanceToHole + " yards");    
+                    }
                     Console.WriteLine("Ball went: " + distance + " yards Distance Left is: " + distanceToHole + " yards");
                     //Thread.Sleep(5000);
                     Console.WriteLine ("End Shot");

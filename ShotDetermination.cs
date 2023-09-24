@@ -677,31 +677,31 @@ namespace SportsManager
             {
                 club = "Driver";
             }
-            else if (distanceToHole > 250 && distanceToHole <= 265)
+            else if (distanceToHole > 232 && distanceToHole <= 244)
             {
                 club = "Driving Iron";
             }
-            else if (distanceToHole > 265 && distanceToHole <= 300)
+            else if (distanceToHole > 245 && distanceToHole <= 300)
             {
                 club = "Wood";
             }
-            else if (distanceToHole > 120 && distanceToHole <= 165)
+            else if (distanceToHole > 100 && distanceToHole <= 136)
             {
                 club = "Wedge";
             }
-            else if (distanceToHole > 165 && distanceToHole <= 185)
+            else if (distanceToHole > 137 && distanceToHole <= 160)
             {
                 club = "Short Iron";
             }
-            else if (distanceToHole > 185 && distanceToHole <= 210)
+            else if (distanceToHole > 161 && distanceToHole <= 186)
             {
                 club = "Mid Iron";
             }
-            else if (distanceToHole > 210 && distanceToHole <= 235)
+            else if (distanceToHole > 187 && distanceToHole <= 220)
             {
                 club = "Long Iron";
             }
-            else if (distanceToHole > 235 && distanceToHole <= 265)
+            else if (distanceToHole > 221 && distanceToHole <= 232)
             {
                 club = "Hybrid";
             }
@@ -750,15 +750,20 @@ namespace SportsManager
             int demeanor = playerr.player.attributes.mental.demeanor;
             int condition = playerr.player.attributes.playerCondition;
             int baseDistance = getClubBaseDistance(clubDistanceSim);
+            //TODO Remove or Restore
+            //int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality 
+            //                    + demeanor + condition + grass + rain + altitude + temp + baseDistance);
             int totalYards = (strength + flexibility + balance + agility + tempo + swing + ballStriking + fit + quality 
-                                + demeanor + condition + grass + rain + altitude + temp + baseDistance);
+                                + demeanor + condition + baseDistance);
             Console.WriteLine(totalYards);
-            if (totalYards > distanceToHole)
+            if (totalYards < distanceToHole)
             { 
+                Console.WriteLine(club);
                 if (club != "Driver")
                 {
                     int rightClub = totalYards - distanceToHole;
-                    if (rightClub <= 20 && rightClub >= -20)
+                    Console.WriteLine(rightClub);
+                    if (rightClub <= 20)
                     {
                         return true;
                     }
@@ -802,31 +807,31 @@ namespace SportsManager
             int clubYards;
             switch (clubChoice){
                 case "Driver":
-                    clubYards = 200;
+                    clubYards = 160;
                     break;
                 case "Driving Iron":
-                    clubYards = 120;
+                    clubYards = 100;
                     break;
                 case "Lob Wedge":
                     clubYards  = 0;
                     break;
                 case "Wood":
-                    clubYards  = 140;
+                    clubYards  = 120;
                     break;
                 case "Long Iron":
-                    clubYards  = 80;
-                    break;
-                case "Hybrid":
-                    clubYards  = 100;
-                    break;
-                case "Mid Iron":
                     clubYards  = 60;
                     break;
-                case "Short Iron":
+                case "Hybrid":
+                    clubYards  = 80;
+                    break;
+                case "Mid Iron":
                     clubYards  = 40;
                     break;
-                case "Wedge":
+                case "Short Iron":
                     clubYards  = 20;
+                    break;
+                case "Wedge":
+                    clubYards  = 10;
                     break;
                 case "Putter":
                     clubYards  = 10;

@@ -132,7 +132,8 @@ namespace SportsManager
                 int totalStats = (play.player.attributes.physical.strength + play.player.attributes.physical.flexibility + play.player.attributes.physical.balance 
                                     + play.player.attributes.physical.agility + play.player.attributes.mechanics.tempo + play.player.attributes.mechanics.swing 
                                     + play.player.attributes.mechanics.ballStriking + play.player.attributes.equipment.fit + play.player.attributes.equipment.quality 
-                                    + play.player.attributes.mental.demeanor + play.player.attributes.playerCondition + grass + rain + altitude + temp);
+                                    + play.player.attributes.mental.demeanor + play.player.attributes.playerCondition);
+                                    // + grass + rain + altitude + temp
                 int shotGradeYards = getShotGradeYards(shotGrade);
                 int distance = baseDistance + totalStats + shotGradeYards;
                 return distance;
