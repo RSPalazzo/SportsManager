@@ -19,41 +19,29 @@ namespace SportsManager
         {
             result.fullName = name;
             result.roundNum = roundNum;
+            result.holeResults = new List<HoleResults>();
         }
         public void SetHole(int holeNumber, int holeYards, int par)
         {
-            result.holeResults[holeNumber-1].holeNumber = holeNumber;
-            result.holeResults[holeNumber-1].holeYards = holeYards;
-            result.holeResults[holeNumber-1].par = par;
+            result.holeResults.Add(new HoleResults {holeNumber = holeNumber, holeYards = holeYards, par = par, holeScore = 0});
+            result.holeResults[holeNumber-1].shotResults = new List<ShotResults>();
+            result.holeResults[holeNumber-1].puttResults = new  List<PuttResults>();
         }
         public void SetShot(int holeNumber, int shotNumber, string club, string shotType, string lie, string location, int shotDifficulty, 
                             int playerSkill, int percent, bool shot, int random, int grade, int hitDistance, int distanceLeft)
         {
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].shotNumber = shotNumber;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].club = club;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].shotType = shotType;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].lie = lie;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].location = location;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].shotDifficulty = shotDifficulty;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].playerSkill = playerSkill;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].percent = percent;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].shot = shot;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].random = random;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].grade = grade;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].hitDistance = hitDistance;
-            result.holeResults[holeNumber-1].shotResults[shotNumber-1].distanceLeft = distanceLeft;
+            
+            result.holeResults[holeNumber-1].shotResults.Add(new ShotResults {
+                shotNumber = shotNumber, club = club, shotType = shotType, lie = lie, location = location, shotDifficulty = shotDifficulty, playerSkill = playerSkill,
+                percent = percent, shot = shot, random = random, grade = grade, hitDistance = hitDistance, distanceLeft = distanceLeft});
         }
         public void SetPutt(int holeNumber, int shotNumber, int puttDistance, string puttGrade, int randomNumber, 
                             int puttDifficulty, int playerSkill, bool puttResult, int puttPercent, int distanceLeft)
         {
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].puttDistance = puttDistance;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].puttGrade = puttGrade;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].randomNumber = randomNumber;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].puttDifficulty = puttDifficulty;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].playerSkill = playerSkill;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].puttResult = puttResult;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].puttPercent = puttPercent;
-            result.holeResults[holeNumber-1].puttResults[shotNumber-1].distanceLeft = distanceLeft;
+            
+            result.holeResults[holeNumber-1].puttResults.Add(new PuttResults {
+            puttDistance = puttDistance, puttGrade = puttGrade, randomNumber = randomNumber, puttDifficulty = puttDifficulty, playerSkill = playerSkill, 
+            puttResult = puttResult,puttPercent = puttPercent, distanceLeft = distanceLeft});
         }
         public void SetHoleScore(int holeNumber, int holeScore)
         {

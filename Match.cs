@@ -34,12 +34,13 @@ namespace SportsManager
         {
             Team team1 = new Team(teamId1);
             Team team2 = new Team(teamId2);
-
+            int roundCount = 1;
             for (int r = 0; r < 2; r++)
             {
                 for (int i = 0; i < team1.team.roster.Count; i++)
                 {
-                    GolfRound round = new GolfRound(golfCourseId, team1.team.roster[i].playerId);
+                    GolfRound round = new GolfRound(golfCourseId, team1.team.roster[i].playerId, roundCount);
+                    roundCount++;
                     if (r == 0 && i == 0)
                     {
                         Team1Player1Score1 = round.roundScore;
@@ -76,7 +77,8 @@ namespace SportsManager
                 }
                 for (int i = 0; i < team2.team.roster.Count; i++)
                 {
-                    GolfRound round = new GolfRound(golfCourseId, team2.team.roster[i].playerId);
+                    GolfRound round = new GolfRound(golfCourseId, team2.team.roster[i].playerId, roundCount);
+                    roundCount++;
                     if (r == 0 && i == 0)
                     {
                         Team2Player1Score1 = round.roundScore;
