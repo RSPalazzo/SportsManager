@@ -1,4 +1,4 @@
-
+/*
 using System;
 using System.IO;
 using Newtonsoft.Json;
@@ -95,4 +95,4 @@ namespace SportsManager
         public int puttPercent {get; set;}
         public int distanceLeft {get; set;}
     } 
-}
+}*/

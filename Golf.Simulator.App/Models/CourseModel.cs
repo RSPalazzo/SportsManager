@@ -1,0 +1,45 @@
+namespace Golf.Simulator.App.Models
+{
+    public class CourseModel
+    {
+        public Course course { get; set; }
+    }
+    public class Course
+    {
+        public List<Holes> holes { get; set; }
+        public string courseName { get; set; }
+        public int courseRating { get; set; }
+        public int courseSlope { get; set; }
+        public int coursePar { get; set; }
+        public int courseYardage { get; set; }
+    }
+    public class Holes
+    {
+            public string holeName { get; set; }
+            public int holeNumber { get; set; }
+            public int holePar { get; set; }
+            public int holeHandicap { get; set; }
+            public int holeYardage { get; set; }
+            public HoleLayout holeLayout {get; set;}
+            public Green green {get; set;}      
+    }
+    public class HoleLayout 
+    {
+        public int fairway {get; set;}
+        public int firstCut {get; set;}
+        public int rough {get; set;}
+        public int woods {get; set;}
+        public int sand {get; set;}
+        public int water {get; set;}
+        public int deepRough {get; set;}
+    }
+    public class Green 
+    {
+        public int size {get; set;}
+        public int uphill {get; set;}
+        public int sidehill {get; set;}
+        public int downhill {get; set;}
+        public int stimp {get; set;}
+        public int complex {get; set;}
+    }
+}
