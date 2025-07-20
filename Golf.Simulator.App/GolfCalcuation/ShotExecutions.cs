@@ -7,13 +7,13 @@ namespace Golf.Simulator.App.GolfCalcuation
 {
     public class ShotExecutions
     {
-        public ShotExecutions ExecuteShot(Player player, Course course, BagDistance bagDistance, Wind wind, Lie lie, int altitude, int temp, Rain rain, CurrentBallPosition currentBall)
+        public Shot ExecuteShot(Player player, Course course, BagDistance bagDistance, CurrentBallPosition currentBall)//Wind wind, Lie lie, int altitude, int temp, Rain rain, )
         {
-            
+            var ChosenShot = Decision(player, course, bagDistance, currentBall); //.wind, currentBall.lie, currentBall.altitude, currentBall.temp, currentBall.rain, currentBall);
             return shotExecution;
         }
 
-        Vector<int> Decision(Player player, Course course, BagDistance bagDistance ,Wind wind, Lie lie, int altitude, int temp, Rain rain, CurrentBallPosition currentBall)
+        Shot Decision(Player player, Course course, BagDistance bagDistance, CurrentBallPosition currentBall)//Wind wind, Lie lie, int altitude, int temp, Rain rain)
         {
             if (player == null || course == null)
             {
