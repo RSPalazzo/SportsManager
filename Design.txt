@@ -1,0 +1,38 @@
+Steps to determine ideal shots on hole
+
+1. Determine Hole Layout
+	Check Fairway Size with accuracy
+	Check Conditions
+	Check for Fairway Bunker
+	Check for OB
+	Check for water
+	Check for Deep Rough
+	Check for Penalty area
+	Assess Wind
+	Assess Lie
+	
+	Result: Ideal decision, Risky Decision, Conservative decision
+	
+	
+
+
+Steps to Execute a Shot
+
+1. Decide on the shot
+	Check: course management + demeanor + mentalState
+	Result: Shot Difficulty
+2. Set up for shot
+	Check: awareness + accuracy
+	Result: setup
+3. Execute Swing
+	Check: swing + tempo + setup + balance + agility 
+	Result: SwingQuality
+4. Execute Ball Strike
+	Check: SwingQuality + ballStriking + fit + quality
+	Result: ballStrike
+5. Shot Accuracy:
+	Check: ballStrike + SwingQuality + ShotShaping + Forgiveness
+	Result: distanceOffLine
+6. Shot Distance:
+	Check: flexibility + speed + strength + ballStrike
+	Result: totalDistance

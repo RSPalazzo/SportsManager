@@ -13,7 +13,7 @@ namespace Golf.Simulator.App.GolfCalcuation
             int uphill = gc.holes[holeNum].green.uphill;
             int downhill = gc.holes[holeNum].green.downhill + uphill;
             int sidehill = gc.holes[holeNum].green.sidehill + downhill;
-              int lieDiff = 0;
+            int lieDiff = 0;
             if (greenLie == "")
             {
                 Random rand = new Random();

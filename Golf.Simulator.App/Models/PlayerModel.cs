@@ -33,7 +33,7 @@ namespace Golf.Simulator.App.Models
     public class Physical
     {
         public int strength { get; set; }
-        public int stamina { get; set; }
+        public int speed { get; set; }
         public int balance { get; set; }
         public int flexibility { get; set; }
         public int agility { get; set; }
@@ -41,8 +41,8 @@ namespace Golf.Simulator.App.Models
     public class Mental 
     {
         public int awareness { get; set; }
-        public int determination { get; set; }
-        public int positivity { get; set; }
+        public int mentalState { get; set; }
+        public int courseManagement { get; set; }
         public int demeanor { get; set; }
         public int fortitude { get; set; }
     }

@@ -803,44 +803,86 @@ namespace Golf.Simulator.App.GolfCalcuation
                 shotType = "Hinge and Hold";
             }
         }
-        public int getClubBaseDistance(string clubChoice)
+        public BagDistance getBagDistances(Player player)
+        {
+            BagDistance bagDistance = new BagDistance();
+            bagDistance.Driver = getClubDistance("Driver", player);
+            bagDistance.ThreeWood = getClubDistance("3 Wood", player);
+            bagDistance.FiveWood = getClubDistance("5 Wood", player);
+            bagDistance.Hybrid = getClubDistance("Hybrid", player);
+            bagDistance.DrivingIron = getClubDistance("Driving Iron", player);
+            bagDistance.FourIron = getClubDistance("4 Iron", player);
+            bagDistance.FiveIron = getClubDistance("5 Iron", player);
+            bagDistance.SixIron = getClubDistance("6 Iron", player);
+            bagDistance.SevenIron = getClubDistance("7 Iron", player);
+            bagDistance.EightIron = getClubDistance("8 Iron", player);
+            bagDistance.NineIron = getClubDistance("9 Iron", player);
+            bagDistance.PitchingWedge = getClubDistance("Pitching Wedge", player);
+            bagDistance.GapWedge = getClubDistance("Gap Wedge", player);
+            bagDistance.SandWedge = getClubDistance("Sand Wedge", player);
+            bagDistance.LobWedge = getClubDistance("Lob Wedge", player);
+            return bagDistance;
+        }
+        public int getClubDistance(string clubChoice, Player player)
         {
             int clubYards;
             switch (clubChoice){
                 case "Driver":
-                    clubYards = 160;
+                    clubYards = 280;
                     break;
-                case "Driving Iron":
-                    clubYards = 100;
+                case "3 Wood":
+                    clubYards = 255;
                     break;
-                case "Lob Wedge":
-                    clubYards  = 0;
-                    break;
-                case "Wood":
-                    clubYards  = 120;
-                    break;
-                case "Long Iron":
-                    clubYards  = 60;
+                case "5 Wood":
+                    clubYards = 240;
                     break;
                 case "Hybrid":
-                    clubYards  = 80;
+                    clubYards = 225;
                     break;
-                case "Mid Iron":
-                    clubYards  = 40;
+                case "Driving Iron":
+                    clubYards = 215;
                     break;
-                case "Short Iron":
-                    clubYards  = 20;
+                case "4 Iron":
+                    clubYards  = 205;
                     break;
-                case "Wedge":
-                    clubYards  = 10;
+                case "5 Iron":
+                    clubYards  = 195;
                     break;
-                case "Putter":
-                    clubYards  = 10;
+                case "6 Iron":
+                    clubYards  = 185;
+                    break;
+                case "7 Iron":
+                    clubYards  = 175;
+                    break;
+                case "8 Iron":
+                    clubYards  = 165;
+                    break;
+                case "9 Iron":
+                    clubYards  = 155;
+                    break;
+                case "Pitching Wedge":
+                    clubYards  = 140;
+                    break;
+                case "Gap Wedge":
+                    clubYards  = 130;
+                    break;
+                case "Sand Wedge":
+                    clubYards  = 120;
+                    break;
+                case "Lob Wedge":
+                    clubYards  = 100;
                     break;
                 default:
                     clubYards  = 0;
                     break;
             }
+            // Adjust club yards based on player attributes
+            int playerDistance = player.attributes.physical.strength + player.attributes.physical.flexibility + player.attributes.physical.speed;
+
+            // Example adjustment: 5's in attributes is neutral , 10's are good, and 0's are bad max stats adds 75 yards to each club Bryson shit
+            //Substract 15 to make 15 neutral           
+            clubYards += (playerDistance - 15) * 5;
+
             return clubYards;
         }
     }

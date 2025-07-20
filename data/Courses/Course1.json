@@ -12,32 +12,36 @@
 			"holePar": 4,
 			"holeHandicap": 6,
 			"holeYardage": 480,
+			"holeDirection": "N",
 			"holeLayout": 
 			{
-				"fairway": 30,
-				"firstCut":5,
+				"fairway": [150, 475, 30, 180, 180]
+				"firstCut": [150, 5]
 				"rough": 40,
-				"woods":10,
-				"sand":5,
-				"water":0,
-				"deepRough": 10
+				"woods":[0, 500]
+				"sand": [280, 315, 15, 40, 160], [460, 470, 10, 40, 160]  
+				"water": [0, 0, 0, 0, 0]
+				"deepRough": [0, 500, 10, 190,], [0, 500, 190, 10,] 
 			},
 			"green":
 			{
-				"size": 15,
+				"size": [15, 30]
 				"uphill":25,
 				"sidehill":50,
 				"downhill":25,
 				"stimp": 10,
 				"complex":10
 			}
-		},
+		}
+	]
+}
 		{
 			"holeName": "TestName2",
 			"holeNumber": 2,
 			"holePar": 3,
 			"holeHandicap": 15,
 			"holeYardage": 175,
+			"holeDirection": "N",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -64,6 +68,7 @@
 			"holePar": 5,
 			"holeHandicap": 16,
 			"holeYardage": 550,
+			"holeDirection": "N",
 			"holeLayout": 
 			{
 				"fairway": 25,
@@ -90,6 +95,7 @@
 			"holePar": 4,
 			"holeHandicap": 9,
 			"holeYardage": 390,
+			"holeDirection": "E",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -116,6 +122,7 @@
 			"holePar": 4,
 			"holeHandicap": 10,
 			"holeYardage": 430,
+			"holeDirection": "E",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -142,6 +149,7 @@
 			"holePar": 3,
 			"holeHandicap": 18,
 			"holeYardage": 155,
+			"holeDirection": "SE",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -168,6 +176,7 @@
 			"holePar": 4,
 			"holeHandicap": 11,
 			"holeYardage": 400,
+			"holeDirection": "S",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -194,6 +203,7 @@
 			"holePar": 4,
 			"holeHandicap": 1,
 			"holeYardage": 500,
+			"holeDirection": "STSW",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -220,6 +230,7 @@
 			"holePar": 5,
 			"holeHandicap": 14,
 			"holeYardage": 575,
+			"holeDirection": "NW",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -246,6 +257,7 @@
 			"holePar": 4,
 			"holeHandicap": 2,
 			"holeYardage": 450,
+			"holeDirection": "NW",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -272,6 +284,7 @@
 			"holePar": 4,
 			"holeHandicap": 4,
 			"holeYardage": 475,
+			"holeDirection": "SE",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -298,6 +311,7 @@
 			"holePar": 4,
 			"holeHandicap": 8,
 			"holeYardage": 420,
+			"holeDirection": "SE",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -324,6 +338,7 @@
 			"holePar": 5,
 			"holeHandicap": 13,
 			"holeYardage": 500,
+			"holeDirection": "W",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -350,6 +365,7 @@
 			"holePar": 3,
 			"holeHandicap": 15,
 			"holeYardage": 200,
+			"holeDirection": "W",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -376,6 +392,7 @@
 			"holePar": 4,
 			"holeHandicap": 5,
 			"holeYardage": 350,
+			"holeDirection": "S",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -402,6 +419,7 @@
 			"holePar": 3,
 			"holeHandicap": 17,
 			"holeYardage": 110,
+			"holeDirection": "SW",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -428,6 +446,7 @@
 			"holePar": 5,
 			"holeHandicap": 12,
 			"holeYardage": 590,
+			"holeDirection": "SW",
 			"holeLayout": 
 			{
 				"fairway": 30,
@@ -454,6 +473,7 @@
 			"holePar": 4,
 			"holeHandicap": 3,
 			"holeYardage": 480,
+			"holeDirection": "E",
 			"holeLayout": 
 			{
 				"fairway": 30,
