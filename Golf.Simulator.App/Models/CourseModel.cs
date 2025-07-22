@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Golf.Simulator.App.Models
 {
@@ -18,6 +19,7 @@ namespace Golf.Simulator.App.Models
         public int holeNumber { get; set; }
         public int holePar { get; set; }
         public int holeHandicap { get; set; }
+        public Size holeSize { get; set; }
         public int holeYardage { get; set; }
         public string holeDirection { get; set; }
         public HoleLayout holeLayout { get; set; }
@@ -26,22 +28,38 @@ namespace Golf.Simulator.App.Models
 
     public class HoleLayout
     {
-        public List<int> fairway { get; set; }
-        public List<int> firstCut { get; set; }
+        public List<Locations> fairway { get; set; }
+        public List<Locations> firstCut { get; set; }
         public int rough { get; set; }
-        public List<int> woods { get; set; }
-        public List<List<int>> sand { get; set; }
-        public List<List<int>> water { get; set; }
-        public List<List<int>> deepRough { get; set; }
+        public List<Locations> woods { get; set; }
+        public List<Locations> sand { get; set; }
+        public List<Locations> water { get; set; }
+        public List<Locations> deepRough { get; set; }
     }
 
     public class Green
     {
-        public List<int> size { get; set; }
-        public int uphill { get; set; }
-        public int sidehill { get; set; }
-        public int downhill { get; set; }
+        public Locations greenLocation { get; set; }
+        public Pin pin { get; set; }
+        public int firmness { get; set; }
         public int stimp { get; set; }
         public int complex { get; set; }
     }
+    public class Locations
+    {
+        public int width { get; set; }
+        public Vector2 startPosition { get; set; }
+        public Vector2 endPosition { get; set; }
+    }
+    public class Size
+    {
+        public int length { get; set; }
+        public int width { get; set; }
+    }
+    public class Pin
+    {
+        public int feetFromFront { get; set; }
+        public int feetFromLeft { get; set; }
+    }
+
 }

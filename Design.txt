@@ -1,6 +1,6 @@
-Steps to determine ideal shots on hole
+Step 1 details 
 
-1. Determine Hole Layout
+1. Determine Hole Layout for tee shot
 	Check Fairway Size with accuracy
 	Check Conditions
 	Check for Fairway Bunker
@@ -8,9 +8,25 @@ Steps to determine ideal shots on hole
 	Check for water
 	Check for Deep Rough
 	Check for Penalty area
-	Assess Wind
-	Assess Lie
-	
+
+2. Determine Hole Layout for approach shot
+	Check distance to pin
+	choose club
+	Check Green Size
+	Check Conditions
+	Check Lie
+	Check for Pin Position
+	Choose Ideal Landing Area
+	Choose Risky Landing Area
+	Choose Conservative Landing Area
+	Check for Bunkers
+	Check for Water
+	Check for OB
+	Check for Deep Rough
+	Determine Shot shape
+
+
+
 	Result: Ideal decision, Risky Decision, Conservative decision
 	
 	
