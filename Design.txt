@@ -38,7 +38,7 @@ Steps to Execute a Shot
 	Check: course management + demeanor + mentalState
 	Result: Shot Difficulty
 2. Set up for shot
-	Check: awareness + accuracy
+	Check: awareness + accuracy   
 	Result: setup
 3. Execute Swing
 	Check: swing + tempo + setup + balance + agility 

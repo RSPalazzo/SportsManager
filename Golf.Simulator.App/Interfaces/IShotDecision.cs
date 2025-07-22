@@ -2,9 +2,9 @@
 
 namespace Golf.Simulator.App.Interfaces
 {
-    public interface IShotDetermination
+    public interface IShotDecision
     {
-        public int getClubBaseDistance(Player player);
+        public Shot DetermineShot(Player player, Course course, BagDistance bagDistance, CurrentBallPosition currentBall);
     }
 }
                                                                    

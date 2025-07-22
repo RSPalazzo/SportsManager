@@ -11,6 +11,5 @@ namespace Golf.Simulator.App.Models
     {
         public string ClubChoice { get; set; }
         public Vector2 BallPosition { get; set; }
-
     }
 }

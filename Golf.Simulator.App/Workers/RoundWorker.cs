@@ -12,13 +12,24 @@ namespace Golf.Simulator.App.Workers
         private readonly PlayerLoad _player;
         private readonly CourseLoad _golfCourse;
         private readonly PlayerOverallSkill _overallSkill;
+        private readonly IShotDecision _shotDecision;
+        private readonly BagDistanceCreate _bag;
+        //Start on first tee
+        private readonly CurrentBallPosition currentBall = new CurrentBallPosition
+        {
+            lie = "Tee",
+            ballPosition = new System.Numerics.Vector2(0, 0),
+            holeNumber = 1
+        };
         //Result resultJson = new Result();
-        public RoundWorker(GolfRoundCreate golfRound, PlayerLoad player, CourseLoad golfCourse, PlayerOverallSkill playerOverallSkill)
+        public RoundWorker(GolfRoundCreate golfRound, PlayerLoad player, CourseLoad golfCourse, PlayerOverallSkill playerOverallSkill, IShotDecision shotDecision, BagDistanceCreate bag)
         {
             _golfRound = golfRound;
             _player = player;
             _golfCourse = golfCourse;
             _overallSkill = playerOverallSkill;
+            _shotDecision = shotDecision;
+            _bag = bag;
         }
         public GolfRound PlayGolfRound(int courseId, int playerId, int roundId)
         {
@@ -30,15 +41,17 @@ namespace Golf.Simulator.App.Workers
         GolfRound PlayRound(GolfRound golfRound)
         {
             var player = _player.GetPlayer(golfRound.PlayerId);
+            var bag = _bag.CreateBagDistance(player);
             var course = _golfCourse.GetGolfCourse(golfRound.CourseId);
             var skill = _overallSkill.getPlayerSkill(player);
             int puttsPerRound = 0;
+            int roundScore = 0;
+            int holeScore = 0;
             bool ballIsHoled = false;
             bool isRoundOver = false;
-            int roundScore = 0;
-            int holeNumber = 1;
+
             int distanceToHole;
-            int holeScore = 0;
+            
             bool shotSim = false;
             int distance = 0;
             distanceToHole = course.holes[holeNumber-1].holeYardage;
@@ -50,27 +63,35 @@ namespace Golf.Simulator.App.Workers
             //resultJson.SetHole(holeNumber, golfCourse.course.holes[holeNumber-1].holeYardage, golfCourse.course.holes[holeNumber-1].holePar); 
             while (isRoundOver == false)
             {
-                isRoundOver = getIsRoundOver(holeNumber, ballIsHoled);
+                isRoundOver = getIsRoundOver(currentBall.holeNumber, ballIsHoled);
 
                 if (isRoundOver == false && ballIsHoled == false)
                 {
-                    ShotDeterminer shot = new ShotDeterminer(holeNumber-1, holeScore, distanceToHole, player, course, shotGrade);
+                    //ShotDeterminer shot = new ShotDeterminer(holeNumber-1, holeScore, distanceToHole, player, course, shotGrade);
+                    var shot = _shotDecision.DetermineShot(player, course, bag, currentBall);
                     ShotSimulator sim = new ShotSimulator();
                     ShotResult result = new ShotResult();
+                    /////////////////////Logging/////////////////////////
                     Console.WriteLine ("---------------------------------------");
-                    Console.WriteLine (player.playerFullName + " steps up to his " + (holeScore+1) + " shot on hole number " + holeNumber);
-                    Console.WriteLine ("This is a " + course.holes[holeNumber-1].holeYardage + " yard Par: " + course.holes[holeNumber-1].holePar);
-                    Console.WriteLine("Ball is " + shot.lie + " in the " + shot.location);
+                    Console.WriteLine (player.playerFullName + " steps up to his " + (holeScore+1) + " shot on hole number " + currentBall.holeNumber);
+                    Console.WriteLine ("This is a " + course.holes[currentBall.holeNumber].holeYardage + " yard Par: " + course.holes[currentBall.holeNumber].holePar);
+                    Console.WriteLine("Ball is " + currentBall.lie + " in the " + currentBall.ballPosition);
                     //Thread.Sleep(5000);
-                    //Determinate Shot Difficulty and Player Skill Rating
-                    Console.WriteLine("The Player pulls " + shot.club + " and is attempting a " + shot.shotType + " shot");
+                    Console.WriteLine("The Player pulls " + shot.ClubChoice + " and is attempting a " + shot.shotType + " shot");
                     //Thread.Sleep(5000);
                     Console.WriteLine("shotDifficulty: " + shot.shotDifficulty + " playerSkill: " + skill);
-                    //Simulate the shot
+                    //////////////////////Logging////////////////////////////////
+                    
+                    //Execute the shot
                     shotSim = sim.ShotGenerator(shot.shotDifficulty, skill);
+
+                    ///////////////////Loggging////////////////////////
                     Console.WriteLine("The Percent to hit the shot was " + sim.shotPercentage);
                     //Thread.Sleep(5000);
                     Console.WriteLine("Was the shot good: " + shotSim  + " The random number generated was "+ sim.perCent);
+                    ///////////////////////Logging////////////////////////////////
+                    
+                    
                     //Shot Grading
                     shotPercent = Convert.ToInt32(sim.shotPercentage);
                     shotGrade = result.getShotResultsGrade(shotPercent, sim.perCent, shotSim);
@@ -97,9 +118,9 @@ namespace Golf.Simulator.App.Workers
                     //resultJson.SetShot(holeNumber, holeScore, shot.club, shot.shotType, shot.lie, shot.location, shot.shotDifficulty, 
                     //        skill, sim.perCent, shotSim, Convert.ToInt32(sim.shotPercentage), shotGrade, distance, distanceToHole);
                     
-                    if (distanceToHole <= course.holes[holeNumber-1].green.size)
+                    if (distanceToHole <= course.holes[currentBall.holeNumber].green.)
                     {
-                        ballIsHoled = generateIsBallInHole(golfRound, course, player, holeNumber,distanceToHole, holeScore, puttsPerRound);
+                        ballIsHoled = generateIsBallInHole(golfRound, course, player, currentBall.holeNumber,distanceToHole, holeScore, puttsPerRound);
                     } 
                 }
                 //If Ball is in the hole go to next hole
