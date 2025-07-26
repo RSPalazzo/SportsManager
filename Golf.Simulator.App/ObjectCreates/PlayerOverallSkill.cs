@@ -5,7 +5,7 @@ namespace Golf.Simulator.App.ObjectCreates
 {
     public class PlayerOverallSkill
     {
-        public int getPlayerSkill(Player player)
+        /* public int getPlayerSkill(Player player)
         {
             if (player == null || player.attributes == null)
             {
@@ -23,7 +23,7 @@ namespace Golf.Simulator.App.ObjectCreates
             }
             return playerSkill;
         }
-        int getPhysicalRating(Player player)
+       int getPhysicalRating(Player player)
         {
             int physicalRating = player.attributes.physical.agility + player.attributes.physical.flexibility + player.attributes.physical.balance
                                     + player.attributes.physical.stamina + player.attributes.physical.strength;
@@ -45,6 +45,6 @@ namespace Golf.Simulator.App.ObjectCreates
             int mechanicsRating = player.attributes.mechanics.ballStriking + player.attributes.mechanics.accuracy + player.attributes.mechanics.swing
                                     + player.attributes.mechanics.tempo + player.attributes.mechanics.shotShaping;
             return mechanicsRating;
-        }
+        }*/
     }
 }

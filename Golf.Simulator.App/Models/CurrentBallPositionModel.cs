@@ -12,6 +12,9 @@ namespace Golf.Simulator.App.Models
         public string lie { get; set; }
         public Vector2 ballPosition { get; set; }
         public int holeNumber { get; set; }
+        public int distanceToPin { get; set; }
+        public int puttLength { get; set; }
+        public int puttMakePercentage { get; set; }
 
     }
 }

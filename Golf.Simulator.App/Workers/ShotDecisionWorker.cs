@@ -1,14 +1,15 @@
 ﻿using Golf.Simulator.App.Models;
+using Golf.Simulator.App.Interfaces;
 using System.Numerics;
 
 namespace Golf.Simulator.App.Workers
 {
-    public  class ShotDecisionWorker
+    public  class ShotDecision : IShotDecision
     {
-        public Shot Decision(Player player, Course course, BagDistance bagDistance, CurrentBallPosition currentBall)//Wind wind, Lie lie, int altitude, int temp, Rain rain)
+        public Shot Decision(Player player, Course course, Bag bagDistance, CurrentBallPosition currentBall)//Wind wind, Lie lie, int altitude, int temp, Rain rain)
         {
             int idealTolerance = 20 + player.attributes.mental.courseManagement; // This can be adjusted based on player skill or conditions
-            int riskyTolerance = 5 + player.attributes.mental.courseManagement; // This can be adjusted based on player skill or conditions
+            int riskyTolerance = 10 + player.attributes.mental.courseManagement; // This can be adjusted based on player skill or conditions
             int conservitiveTolerance = 40 + player.attributes.mental.courseManagement; // This can be adjusted based on player skill or conditions
 
             var idealShot = GetShot(course, player, bagDistance, currentBall, idealTolerance); //wind, lie, altitude, temp, rain, );
@@ -19,11 +20,22 @@ namespace Golf.Simulator.App.Workers
             // Mental state is a value between 0 and 100, where 0 is very aggressive and 100 is very calm multiplied by 10 to get a value between 0 and 100
             return PlayerDecision(idealShot, riskyShot, conservitiveShot, player);
         }
-        Shot GetShot(Course course, Player player, BagDistance bagDistance, CurrentBallPosition currentBall, int tolerance) // Wind wind, Lie lie, int altitude, int temp, Rain rain,)
+        Shot GetShot(Course course, Player player, Bag bagDistance, CurrentBallPosition currentBall, int tolerance) // Wind wind, Lie lie, int altitude, int temp, Rain rain,)
         {
             // TODO: Determine target
+            var IsBallOnGreen = CheckIfBallIsOnGreen(course, currentBall);
+            if (IsBallOnGreen)
+            {
+                // If the ball is on the green, we can putt
+                return new Shot
+                {
+                    ClubChoice = "Putter",
+                    BallPosition = course.holes[currentBall.holeNumber].green.pin
+                };
+            }
             var target = DetermineTarget(course, player, bagDistance, currentBall, tolerance);
-            var shot = ChooseClub(target, bagDistance, tolerance);
+            
+            var shot = ChooseClub(target, bagDistance, currentBall, tolerance);
 
             return shot;
         }
@@ -77,175 +89,45 @@ namespace Golf.Simulator.App.Workers
                 return conservitiveShot;
             }
         }
-        Shot ChooseClub(Vector2 target, BagDistance bagDistance, int tolerance)
+        Shot ChooseClub(Vector2 target, Bag bagDistance, CurrentBallPosition currentBall, int tolerance)
         {
             Shot shot = new Shot();
-            // If the pin is not reachable, we can choose a club based on the fairway distance
-            if (target.Y - bagDistance.Driver <= tolerance)
+            var distanceToTarget = FindDistanceToTargetInYards(target, currentBall.ballPosition); // Assuming target.Y is the distance to the pin in yards
+            foreach (var club in bagDistance.bag)
             {
-                shot.ClubChoice = "Driver";
-                shot.BallPosition = new Vector2(target.X, target.Y);
+                // Check if the target is within the club's distance range
+                if (distanceToTarget <= club.ClubDistance + tolerance && distanceToTarget >= club.ClubDistance - tolerance)
+                {
+                    shot.ClubChoice = club.ClubName;
+                    shot.BallPosition = new Vector2(target.X, target.Y);
+                    return shot; // Return the first matching club
+                }
             }
-            else if (target.Y - bagDistance.ThreeWood <= tolerance)
-            {
-                shot.ClubChoice = "Three Wood";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.FiveWood <= tolerance)
-            {
-                shot.ClubChoice = "Five Wood";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.Hybrid >= tolerance || target.Y - bagDistance.Hybrid <= tolerance)
-            {
-                shot.ClubChoice = "Hybrid";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.DrivingIron >= tolerance || target.Y - bagDistance.DrivingIron <= tolerance)
-            {
-                shot.ClubChoice = "Driving Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.FourIron >= tolerance || target.Y - bagDistance.FourIron <= tolerance)
-            {
-                shot.ClubChoice = "Four Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.FiveIron >= tolerance || target.Y - bagDistance.FiveIron <= tolerance)
-            {
-                shot.ClubChoice = "Five Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.SixIron >= tolerance || target.Y - bagDistance.SixIron <= tolerance)
-            {
-                shot.ClubChoice = "Six Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.SevenIron >= tolerance || target.Y - bagDistance.SevenIron <= tolerance)
-            {
-                shot.ClubChoice = "Seven Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.EightIron >= tolerance || target.Y - bagDistance.EightIron <= tolerance)
-            {
-                shot.ClubChoice = "Eight Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if (target.Y - bagDistance.NineIron >= tolerance || target.Y - bagDistance.NineIron <= tolerance)
-            {
-                shot.ClubChoice = "Nine Iron";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if ((target.Y - bagDistance.PitchingWedge >= tolerance || target.Y - bagDistance.PitchingWedge <= tolerance))
-            {
-                shot.ClubChoice = "Pitching Wedge";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if ((target.Y - bagDistance.GapWedge >= tolerance || target.Y - bagDistance.GapWedge <= tolerance))
-            {
-                shot.ClubChoice = "Gap Wedge";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if ((target.Y - bagDistance.SandWedge >= tolerance || target.Y - bagDistance.SandWedge <= tolerance))
-            {
-                shot.ClubChoice = "Sand Wedge";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else if ((target.Y - bagDistance.LobWedge >= tolerance || target.Y - bagDistance.LobWedge <= tolerance))
-            {
-                shot.ClubChoice = "Lob Wedge";
-                shot.BallPosition = new Vector2(target.X, target.Y);
-            }
-            else
-            {
-                throw new Exception("No suitable club found for the distance to the pin.");
-            }
-            return shot;
+            return null;
         }
-        Vector2 GetPinPosition(Green green, Hole hole)
+        bool CheckIfBallIsOnGreen(Course course, CurrentBallPosition currentBall)
         {
-            // Get Pin yards from Center of Green
-            var yardsToCenterFromWidth = green.greenLocation.width / 2; // Center of the green in yards
-            var yardsToPinFromLeft = green.pin.feetFromLeft / 3;
-            var pinPositionFromLeft = yardsToCenterFromWidth - yardsToPinFromLeft; // Position from the left of the green
-            var yardsToPinFromFront = green.pin.feetFromFront / 3; // Position from the front of the green
-            var pinPositionFromFront = yardsToCenterFromWidth - yardsToPinFromFront; // Position from the front of the green
-            return new Vector2(hole.holeSize.length - (green.greenLocation.endPosition.Y - green.greenLocation.startPosition.Y) - pinPositionFromFront, (hole.holeSize.width - green.greenLocation.width - pinPositionFromLeft));
+            // Get the current hole and its layout
+            var hole = course.holes[currentBall.holeNumber];
+            var green = course.holes[currentBall.holeNumber].green;
+            // Check if the target is within the green area
+            return currentBall.ballPosition.X >= green.greenLocation.startPosition.X && currentBall.ballPosition.X <= green.greenLocation.endPosition.X &&
+                   currentBall.ballPosition.Y >= green.greenLocation.startPosition.Y && currentBall.ballPosition.Y <= green.greenLocation.endPosition.Y;
         }
-        Vector2 GetLayupTarget (Locations fairway, BagDistance bagDistance, int tolerance)
+        Vector2 GetLayupTarget (Locations fairway, Bag bagDistance, CurrentBallPosition currentBall, int tolerance)
         {
-            // Get the middle of the fairway
-            if (fairway.endPosition.Y - bagDistance.Driver <= tolerance)
+            var distanceToPin = fairway.endPosition.Y - currentBall.distanceToPin; // Assuming target.Y is the distance to the pin in yards
+            foreach (var club in bagDistance.bag)
             {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.Driver);
+                // Check if the target is within the club's distance range
+                if (distanceToPin <= club.ClubDistance + tolerance && fairway.endPosition.Y >= club.ClubDistance - tolerance)
+                {
+                    return new Vector2(fairway.startPosition.X + (fairway.width / 2), club.ClubDistance);
+                }
             }
-            else if (fairway.endPosition.Y - bagDistance.ThreeWood <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.ThreeWood);
-            }
-            else if (fairway.endPosition.Y - bagDistance.FiveWood <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.FiveWood);
-            }
-            else if (fairway.endPosition.Y - bagDistance.Hybrid >= tolerance || fairway.endPosition.Y - bagDistance.Hybrid <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.Hybrid);
-            }
-            else if (fairway.endPosition.Y - bagDistance.DrivingIron >= tolerance || fairway.endPosition.Y - bagDistance.DrivingIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.DrivingIron);
-            }
-            else if (fairway.endPosition.Y - bagDistance.FourIron >= tolerance || fairway.endPosition.Y - bagDistance.FourIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.FourIron);
-            }
-            else if (fairway.endPosition.Y - bagDistance.FiveIron >= tolerance || fairway.endPosition.Y - bagDistance.FiveIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.FiveIron);
-            }
-            else if (fairway.endPosition.Y - bagDistance.SixIron >= tolerance || fairway.endPosition.Y - bagDistance.SixIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.SixIron);
-            }
-            else if (fairway.endPosition.Y - bagDistance.SevenIron >= tolerance || fairway.endPosition.Y - bagDistance.SevenIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.SevenIron);
-            }
-            else if (fairway.endPosition.Y - bagDistance.EightIron >= tolerance || fairway.endPosition.Y - bagDistance.EightIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.EightIron);
-            }
-            else if (fairway.endPosition.Y - bagDistance.NineIron >= tolerance || fairway.endPosition.Y - bagDistance.NineIron <= tolerance)
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.NineIron);
-            }
-            else if ((fairway.endPosition.Y - bagDistance.PitchingWedge >= tolerance || fairway.endPosition.Y - bagDistance.PitchingWedge <= tolerance))
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.PitchingWedge);
-            }
-            else if ((fairway.endPosition.Y - bagDistance.GapWedge >= tolerance || fairway.endPosition.Y - bagDistance.GapWedge <= tolerance))
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.GapWedge);
-            }
-            else if ((fairway.endPosition.Y - bagDistance.SandWedge >= tolerance || fairway.endPosition.Y - bagDistance.SandWedge <= tolerance))
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.SandWedge);
-            }
-            else if ((fairway.endPosition.Y - bagDistance.LobWedge >= tolerance || fairway.endPosition.Y - bagDistance.LobWedge <= tolerance))
-            {
-                return new Vector2(fairway.startPosition.X + (fairway.width / 2), bagDistance.LobWedge);
-            }
-            else
-            {
-                throw new Exception("No suitable club found for the distance to the pin.");
-            }
-
-
-
-
-            return ballPosition;
+            return new Vector2(0,0);
         }
-        Vector2 DetermineTarget(Course course, Player player, BagDistance bagDistance, CurrentBallPosition currentBall, int tolerance)
+        Vector2 DetermineTarget(Course course, Player player, Bag bagDistance, CurrentBallPosition currentBall, int tolerance)
         {
             // Get the current hole and its layout
             var hole = course.holes[currentBall.holeNumber];
@@ -253,9 +135,8 @@ namespace Golf.Simulator.App.Workers
             var green = course.holes[currentBall.holeNumber].green;
 
             //Calculate the pin position and distance to pin
-            var pinPosition = GetPinPosition(green, hole);
-            var distanceToPin = FindDistanceToPinPositionInYards(green, hole, currentBall);
-            
+            var distanceToPin = FindDistanceToTargetInYards(green.pin, currentBall.ballPosition);
+            currentBall.distanceToPin = distanceToPin; // Store the distance to pin in the current ball position
             //Select first fairway object
             var fairway = holeLayout.fairway.FirstOrDefault();
 
@@ -297,16 +178,18 @@ namespace Golf.Simulator.App.Workers
             }
 
             //Get Target for shot
-            if (distanceToPin <= bagDistance.Driver + tolerance)
+            // if distance to the ping is less then clubName Driver distance + tolerance, we can go for the pin
+            var driverDistance = bagDistance.bag.FirstOrDefault(c => c.ClubName == "Driver")?.ClubDistance ?? 0;
+            if (distanceToPin <= driverDistance + tolerance)
             {
                 //TODO: Add Nuance to the green distance desired by players based on their attributes in a later code update
                 // For simplicity, we will set the target to the pin position
-                target = GetPinPosition(green, hole);
+                target = green.pin;
             }
             else
             {
                 //TODO: Add Nuance to the fairway distance diesired by players based on their attributes in a later code update
-                target = GetLayupTarget(fairway, bagDistance, tolerance);
+                target = GetLayupTarget(fairway, bagDistance, currentBall, tolerance);
                 // If the pin is not reachable, we can choose a club based on the fairway distance
             }
             return target;
@@ -337,16 +220,13 @@ namespace Golf.Simulator.App.Workers
             // Check if the hazard is between the ball and the pin
             return null; // No hazard between the ball and the pin
         }
-        int FindDistanceToPinPositionInYards(Green green, Hole hole, CurrentBallPosition currentBall)
+        int FindDistanceToTargetInYards (Vector2 target, Vector2 currentBall)
         {
-            var pinPosition = GetPinPosition(green, hole);
-            // Calculate the distance from the player's ball position to the pin position
-            // Assume ballPosition.X is distance from front, ballPosition.Y is distance from left
-            var dx = pinPosition.X - currentBall.ballPosition.X;
-            var dy = pinPosition.Y - currentBall.ballPosition.Y;
-            var distanceFromBallToPin = Convert.ToInt32(Math.Sqrt(dx * dx + dy * dy));
+            var dx = target.X - currentBall.X;
+            var dy = target.Y - currentBall.Y;
+            var distanceFromBallToTarget = Convert.ToInt32(Math.Sqrt(dx * dx + dy * dy));
 
-            return distanceFromBallToPin;
+            return distanceFromBallToTarget;
         }
     }
 }

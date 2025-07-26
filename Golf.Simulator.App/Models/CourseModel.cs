@@ -6,10 +6,10 @@ namespace Golf.Simulator.App.Models
     public class Course
     {
         public string courseName { get; set; }
-        public string coursePar { get; set; }
-        public string courseRating { get; set; }
-        public string courseSlope { get; set; }
-        public string courseYardage { get; set; }
+        public int coursePar { get; set; }
+        public double courseRating { get; set; }
+        public int courseSlope { get; set; }
+        public int courseYardage { get; set; }
         public List<Hole> holes { get; set; }
     }
 
@@ -40,7 +40,7 @@ namespace Golf.Simulator.App.Models
     public class Green
     {
         public Locations greenLocation { get; set; }
-        public Pin pin { get; set; }
+        public Vector2 pin { get; set; }
         public int firmness { get; set; }
         public int stimp { get; set; }
         public int complex { get; set; }
@@ -56,10 +56,4 @@ namespace Golf.Simulator.App.Models
         public int length { get; set; }
         public int width { get; set; }
     }
-    public class Pin
-    {
-        public int feetFromFront { get; set; }
-        public int feetFromLeft { get; set; }
-    }
-
 }

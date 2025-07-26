@@ -7,9 +7,19 @@ namespace Golf.Simulator.App.ObjectLoads
     {
         public Course GetGolfCourse(int courseId)
         {
-            var jsonString = File.ReadAllText("data/Courses/Course" + courseId + ".json");
-            Course course = JsonSerializer.Deserialize<Course>(jsonString);
-            return course;
+            try
+            {
+                var jsonString = File.ReadAllText("data/Courses/Course" + courseId + ".json");
+                var options = new JsonSerializerOptions();
+                options.Converters.Add(new Vector2JsonConverter());
+                Course course = JsonSerializer.Deserialize<Course>(jsonString, options);
+                return course;
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Deserialization error: {ex.Message}");
+                throw;
+            }
         }
     }
 }

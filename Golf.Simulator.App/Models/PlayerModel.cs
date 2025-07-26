@@ -19,9 +19,14 @@ namespace Golf.Simulator.App.Models
         public string playerHandedness { get; set; }
         public string playerPersonality { get; set; }
 
+        public List<BagClubs> playerBag { get; set; }
         public Attributes attributes {get; set;}
     
-    }   
+    }
+    public class BagClubs
+    {
+        public string clubName { get; set; }
+    }
     public class Attributes
     {
         public Physical physical { get; set; }

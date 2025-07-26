@@ -1,556 +1,523 @@
 {
-"courseName": "TestName",
-"coursePar": "72",
-"courseRating": "72",
-"courseSlope": "120",
-"courseYardage": "7230",
-"holes":
-	[
-		{
-			"holeName": "TestName1",
-			"holeNumber": 1,
-			"holePar": 4,
-			"holeHandicap": 6,
-			"holeSize": {
-				"width": 200,
-				"depth": 500
-			}
-			"holeYardage": 480,
-			"holeDirection": "N",
-			"holeLayout": 
-			{
-				"fairway": [{
-					"startPosition": { "X": 85, "Y": 150 },
-					"endPosition": { "X": 115, "Y": 475 },
-					"width": 30 
-				}]
-				"firstCut": [
-				{
-					"startPosition": { "X": 115, "Y": 150 },
-					"endPosition": { "X": 120, "Y": 475 },
-					"width": 5
-				},
-				{
-					"startPosition": { "X": 85, "Y": 150 },
-					"endPosition": { "X": 80, "Y": 475 },
-					"width": 5
-				}]
-				"rough": 40,
-				"woods":
-				[{
-					"startPosition": { "X": 20, "Y": 0 },
-					"endPosition": { "X": 0, "Y": 500 },
-					"width": 20
-				},
-				{
-					"startPosition": { "X": 180, "Y": 500 },
-					"endPosition": { "X": 200, "Y": 500 },
-					"width": 20
-				}]
-				"sand": [
-					{
-						"startPosition": { "X": 55, "Y": 280 },
-						"endPosition": { "X": 40, "Y": 315 },
-						"width": 15
-					},
-					{
-						"startPosition": { "X": 60, "Y": 460 },
-						"endPosition": { "X": 50, "Y": 470 },
-						"width": 10
-					}
-				]
-				"water": []
-				"deepRough": [
-					{
-						"startPosition": { "X": 30, "Y": 0 },
-						"endPosition": { "X": 20, "Y": 500 },
-						"width": 10
-					},
-					{
-						"startPosition": { "X": 170, "Y": 0 },
-						"endPosition": { "X": 180, "Y": 500 },
-						"width": 10
-					}
-				]
-			},
-			"green":
-			{
-				"greenLocation":
-				{
-					"startPosition": { "X": 85, "Y": 470 },
-					"endPosition": { "X": 115, "Y": 490 },
-					"width": 30
-				},
-				"pin":
-				{
-					"feetFromFront": 15,
-					"feetFromLeft": 50
-				},
-				"firmness": 5,
-				"stimp": 10,
-				"complex":10
-			}
-		}
-	]
-}
-		{
-			"holeName": "TestName2",
-			"holeNumber": 2,
-			"holePar": 3,
-			"holeHandicap": 15,
-			"holeYardage": 175,
-			"holeDirection": "N",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName3",
-			"holeNumber": 3,
-			"holePar": 5,
-			"holeHandicap": 16,
-			"holeYardage": 550,
-			"holeDirection": "N",
-			"holeLayout": 
-			{
-				"fairway": 25,
-				"firstCut":5,
-				"rough": 25,
-				"woods":10,
-				"sand":5,
-				"water": 20,
-				"deepRough": 10
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName4",
-			"holeNumber": 4,
-			"holePar": 4,
-			"holeHandicap": 9,
-			"holeYardage": 390,
-			"holeDirection": "E",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods": 0,
-				"sand":10,
-				"water":0,
-				"deepRough": 30
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName5",
-			"holeNumber": 5,
-			"holePar": 4,
-			"holeHandicap": 10,
-			"holeYardage": 430,
-			"holeDirection": "E",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName6",
-			"holeNumber": 6,
-			"holePar": 3,
-			"holeHandicap": 18,
-			"holeYardage": 155,
-			"holeDirection": "SE",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName7",
-			"holeNumber": 7,
-			"holePar": 4,
-			"holeHandicap": 11,
-			"holeYardage": 400,
-			"holeDirection": "S",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName8",
-			"holeNumber": 8,
-			"holePar": 4,
-			"holeHandicap": 1,
-			"holeYardage": 500,
-			"holeDirection": "STSW",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName9",
-			"holeNumber": 9,
-			"holePar": 5,
-			"holeHandicap": 14,
-			"holeYardage": 575,
-			"holeDirection": "NW",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName10",
-			"holeNumber": 10,
-			"holePar": 4,
-			"holeHandicap": 2,
-			"holeYardage": 450,
-			"holeDirection": "NW",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName11",
-			"holeNumber": 11,
-			"holePar": 4,
-			"holeHandicap": 4,
-			"holeYardage": 475,
-			"holeDirection": "SE",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName12",
-			"holeNumber": 12,
-			"holePar": 4,
-			"holeHandicap": 8,
-			"holeYardage": 420,
-			"holeDirection": "SE",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName13",
-			"holeNumber": 13,
-			"holePar": 5,
-			"holeHandicap": 13,
-			"holeYardage": 500,
-			"holeDirection": "W",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName14",
-			"holeNumber": 14,
-			"holePar": 3,
-			"holeHandicap": 15,
-			"holeYardage": 200,
-			"holeDirection": "W",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName15",
-			"holeNumber": 15,
-			"holePar": 4,
-			"holeHandicap": 5,
-			"holeYardage": 350,
-			"holeDirection": "S",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName16",
-			"holeNumber": 16,
-			"holePar": 3,
-			"holeHandicap": 17,
-			"holeYardage": 110,
-			"holeDirection": "SW",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName17",
-			"holeNumber": 17,
-			"holePar": 5,
-			"holeHandicap": 12,
-			"holeYardage": 590,
-			"holeDirection": "SW",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		},
-		{
-			"holeName": "TestName18",
-			"holeNumber": 18,
-			"holePar": 4,
-			"holeHandicap": 3,
-			"holeYardage": 480,
-			"holeDirection": "E",
-			"holeLayout": 
-			{
-				"fairway": 30,
-				"firstCut":5,
-				"rough": 20,
-				"woods":20,
-				"sand":5,
-				"water":0,
-				"deepRough": 20
-			},
-			"green":
-			{
-				"size": 15,
-				"uphill":25,
-				"sidehill":50,
-				"downhill":25,
-				"stimp": 10,
-				"complex":10
-			}
-		}			
-	]
+  "courseName": "TestName",
+  "coursePar": 72,
+  "courseRating": 72.0,
+  "courseSlope": 120,
+  "courseYardage": 7230,
+  "holes": [
+    {
+      "holeName": "TestName1",
+      "holeNumber": 1,
+      "holePar": 4,
+      "holeHandicap": 1,
+      "holeSize": { "width": 200, "length": 500 },
+      "holeYardage": 410,
+      "holeDirection": "N",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 85, "Y": 150 }, "endPosition": { "X": 115, "Y": 475 }, "width": 30 }],
+        "firstCut": [
+          { "startPosition": { "X": 115, "Y": 150 }, "endPosition": { "X": 120, "Y": 475 }, "width": 5 },
+          { "startPosition": { "X": 80, "Y": 150 }, "endPosition": { "X": 85, "Y": 475 }, "width": 5 }
+        ],
+        "rough": 40,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 500 }, "width": 20 },
+          { "startPosition": { "X": 180, "Y": 500 }, "endPosition": { "X": 200, "Y": 500 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 55, "Y": 280 }, "endPosition": { "X": 75, "Y": 315 }, "width": 15 },
+          { "startPosition": { "X": 60, "Y": 460 }, "endPosition": { "X": 80, "Y": 470 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": [
+          { "startPosition": { "X": 20, "Y": 0 }, "endPosition": { "X": 30, "Y": 500 }, "width": 10 },
+          { "startPosition": { "X": 170, "Y": 0 }, "endPosition": { "X": 180, "Y": 500 }, "width": 10 }
+        ]
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 85, "Y": 470 }, "endPosition": { "X": 115, "Y": 490 }, "width": 30 },
+        "pin": { "X": 90, "Y": 480 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 10
+      }
+    },
+    {
+      "holeName": "TestName2",
+      "holeNumber": 2,
+      "holePar": 4,
+      "holeHandicap": 13,
+      "holeSize": { "width": 180, "length": 420 },
+      "holeYardage": 390,
+      "holeDirection": "NE",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 70, "Y": 100 }, "endPosition": { "X": 110, "Y": 390 }, "width": 28 }],
+        "firstCut": [
+          { "startPosition": { "X": 110, "Y": 100 }, "endPosition": { "X": 115, "Y": 390 }, "width": 5 }
+        ],
+        "rough": 35,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 420 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 60, "Y": 200 }, "endPosition": { "X": 80, "Y": 220 }, "width": 12 }
+        ],
+        "water": [],
+        "deepRough": [
+          { "startPosition": { "X": 20, "Y": 0 }, "endPosition": { "X": 30, "Y": 420 }, "width": 10 }
+        ]
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 90, "Y": 370 }, "endPosition": { "X": 120, "Y": 410 }, "width": 30 },
+        "pin": { "X": 100, "Y": 390 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 8
+      }
+    },
+    {
+      "holeName": "TestName3",
+      "holeNumber": 3,
+      "holePar": 3,
+      "holeHandicap": 17,
+      "holeSize": { "width": 120, "length": 180 },
+      "holeYardage": 160,
+      "holeDirection": "E",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 50, "Y": 20 }, "endPosition": { "X": 70, "Y": 160 }, "width": 20 }],
+        "firstCut": [],
+        "rough": 20,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 60, "Y": 140 }, "endPosition": { "X": 80, "Y": 160 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 60, "Y": 150 }, "endPosition": { "X": 80, "Y": 170 }, "width": 20 },
+        "pin": { "X": 70, "Y": 160 },
+        "firmness": 7,
+        "stimp": 11,
+        "complex": 7
+      }
+    },
+    {
+      "holeName": "TestName4",
+      "holeNumber": 4,
+      "holePar": 5,
+      "holeHandicap": 3,
+      "holeSize": { "width": 220, "length": 600 },
+      "holeYardage": 540,
+      "holeDirection": "SE",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 100, "Y": 100 }, "endPosition": { "X": 120, "Y": 540 }, "width": 35 }],
+        "firstCut": [],
+        "rough": 45,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 600 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 110, "Y": 300 }, "endPosition": { "X": 130, "Y": 320 }, "width": 15 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 110, "Y": 520 }, "endPosition": { "X": 140, "Y": 560 }, "width": 30 },
+        "pin": { "X": 120, "Y": 540 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 9
+      }
+    },
+    {
+      "holeName": "TestName5",
+      "holeNumber": 5,
+      "holePar": 4,
+      "holeHandicap": 7,
+      "holeSize": { "width": 180, "length": 410 },
+      "holeYardage": 380,
+      "holeDirection": "S",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 70, "Y": 50 }, "endPosition": { "X": 110, "Y": 380 }, "width": 28 }],
+        "firstCut": [],
+        "rough": 30,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 80, "Y": 200 }, "endPosition": { "X": 100, "Y": 220 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 90, "Y": 360 }, "endPosition": { "X": 120, "Y": 400 }, "width": 30 },
+        "pin": { "X": 100, "Y": 380 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 8
+      }
+    },
+    {
+      "holeName": "TestName6",
+      "holeNumber": 6,
+      "holePar": 4,
+      "holeHandicap": 11,
+      "holeSize": { "width": 170, "length": 400 },
+      "holeYardage": 370,
+      "holeDirection": "SW",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 60, "Y": 40 }, "endPosition": { "X": 100, "Y": 370 }, "width": 25 }],
+        "firstCut": [],
+        "rough": 28,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 70, "Y": 200 }, "endPosition": { "X": 90, "Y": 220 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 80, "Y": 350 }, "endPosition": { "X": 110, "Y": 390 }, "width": 30 },
+        "pin": { "X": 90, "Y": 370 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 7
+      }
+    },
+    {
+      "holeName": "TestName7",
+      "holeNumber": 7,
+      "holePar": 3,
+      "holeHandicap": 15,
+      "holeSize": { "width": 110, "length": 170 },
+      "holeYardage": 150,
+      "holeDirection": "W",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 40, "Y": 10 }, "endPosition": { "X": 60, "Y": 150 }, "width": 18 }],
+        "firstCut": [],
+        "rough": 18,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 50, "Y": 130 }, "endPosition": { "X": 70, "Y": 150 }, "width": 8 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 50, "Y": 140 }, "endPosition": { "X": 70, "Y": 160 }, "width": 20 },
+        "pin": { "X": 60, "Y": 150 },
+        "firmness": 7,
+        "stimp": 11,
+        "complex": 6
+      }
+    },
+    {
+      "holeName": "TestName8",
+      "holeNumber": 8,
+      "holePar": 5,
+      "holeHandicap": 5,
+      "holeSize": { "width": 210, "length": 580 },
+      "holeYardage": 530,
+      "holeDirection": "NW",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 90, "Y": 90 }, "endPosition": { "X": 120, "Y": 530 }, "width": 32 }],
+        "firstCut": [],
+        "rough": 42,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 580 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 100, "Y": 300 }, "endPosition": { "X": 120, "Y": 320 }, "width": 14 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 110, "Y": 510 }, "endPosition": { "X": 140, "Y": 550 }, "width": 30 },
+        "pin": { "X": 120, "Y": 530 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 8
+      }
+    },
+    {
+      "holeName": "TestName9",
+      "holeNumber": 9,
+      "holePar": 4,
+      "holeHandicap": 9,
+      "holeSize": { "width": 190, "length": 430 },
+      "holeYardage": 400,
+      "holeDirection": "N",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 80, "Y": 60 }, "endPosition": { "X": 120, "Y": 400 }, "width": 28 }],
+        "firstCut": [],
+        "rough": 32,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 90, "Y": 200 }, "endPosition": { "X": 110, "Y": 220 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 100, "Y": 380 }, "endPosition": { "X": 130, "Y": 420 }, "width": 30 },
+        "pin": { "X": 110, "Y": 400 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 7
+      }
+    },
+    {
+      "holeName": "TestName10",
+      "holeNumber": 10,
+      "holePar": 4,
+      "holeHandicap": 2,
+      "holeSize": { "width": 200, "length": 500 },
+      "holeYardage": 420,
+      "holeDirection": "NE",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 85, "Y": 150 }, "endPosition": { "X": 115, "Y": 475 }, "width": 30 }],
+        "firstCut": [],
+        "rough": 40,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 500 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 55, "Y": 280 }, "endPosition": { "X": 75, "Y": 315 }, "width": 15 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 85, "Y": 470 }, "endPosition": { "X": 115, "Y": 490 }, "width": 30 },
+        "pin": { "X": 90, "Y": 480 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 10
+      }
+    },
+    {
+      "holeName": "TestName11",
+      "holeNumber": 11,
+      "holePar": 5,
+      "holeHandicap": 4,
+      "holeSize": { "width": 220, "length": 600 },
+      "holeYardage": 550,
+      "holeDirection": "E",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 100, "Y": 100 }, "endPosition": { "X": 120, "Y": 540 }, "width": 35 }],
+        "firstCut": [],
+        "rough": 45,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 600 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 110, "Y": 300 }, "endPosition": { "X": 130, "Y": 320 }, "width": 15 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 110, "Y": 520 }, "endPosition": { "X": 140, "Y": 560 }, "width": 30 },
+        "pin": { "X": 120, "Y": 540 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 9
+      }
+    },
+    {
+      "holeName": "TestName12",
+      "holeNumber": 12,
+      "holePar": 3,
+      "holeHandicap": 18,
+      "holeSize": { "width": 120, "length": 180 },
+      "holeYardage": 170,
+      "holeDirection": "S",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 50, "Y": 20 }, "endPosition": { "X": 70, "Y": 160 }, "width": 20 }],
+        "firstCut": [],
+        "rough": 20,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 60, "Y": 140 }, "endPosition": { "X": 80, "Y": 160 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 60, "Y": 150 }, "endPosition": { "X": 80, "Y": 170 }, "width": 20 },
+        "pin": { "X": 70, "Y": 160 },
+        "firmness": 7,
+        "stimp": 11,
+        "complex": 7
+      }
+    },
+    {
+      "holeName": "TestName13",
+      "holeNumber": 13,
+      "holePar": 4,
+      "holeHandicap": 8,
+      "holeSize": { "width": 180, "length": 410 },
+      "holeYardage": 390,
+      "holeDirection": "W",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 70, "Y": 50 }, "endPosition": { "X": 110, "Y": 380 }, "width": 28 }],
+        "firstCut": [],
+        "rough": 30,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 80, "Y": 200 }, "endPosition": { "X": 100, "Y": 220 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 90, "Y": 360 }, "endPosition": { "X": 120, "Y": 400 }, "width": 30 },
+        "pin": { "X": 100, "Y": 380 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 8
+      }
+    },
+    {
+      "holeName": "TestName14",
+      "holeNumber": 14,
+      "holePar": 4,
+      "holeHandicap": 10,
+      "holeSize": { "width": 170, "length": 400 },
+      "holeYardage": 360,
+      "holeDirection": "NW",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 60, "Y": 40 }, "endPosition": { "X": 100, "Y": 370 }, "width": 25 }],
+        "firstCut": [],
+        "rough": 28,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 70, "Y": 200 }, "endPosition": { "X": 90, "Y": 220 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 80, "Y": 350 }, "endPosition": { "X": 110, "Y": 390 }, "width": 30 },
+        "pin": { "X": 90, "Y": 370 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 7
+      }
+    },
+    {
+      "holeName": "TestName15",
+      "holeNumber": 15,
+      "holePar": 4,
+      "holeHandicap": 12,
+      "holeSize": { "width": 190, "length": 430 },
+      "holeYardage": 410,
+      "holeDirection": "E",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 80, "Y": 60 }, "endPosition": { "X": 120, "Y": 400 }, "width": 28 }],
+        "firstCut": [],
+        "rough": 32,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 90, "Y": 200 }, "endPosition": { "X": 110, "Y": 220 }, "width": 10 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 100, "Y": 380 }, "endPosition": { "X": 130, "Y": 420 }, "width": 30 },
+        "pin": { "X": 110, "Y": 400 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 7
+      }
+    },
+    {
+      "holeName": "TestName16",
+      "holeNumber": 16,
+      "holePar": 3,
+      "holeHandicap": 16,
+      "holeSize": { "width": 110, "length": 170 },
+      "holeYardage": 180,
+      "holeDirection": "S",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 40, "Y": 10 }, "endPosition": { "X": 60, "Y": 150 }, "width": 18 }],
+        "firstCut": [],
+        "rough": 18,
+        "woods": [],
+        "sand": [
+          { "startPosition": { "X": 50, "Y": 130 }, "endPosition": { "X": 70, "Y": 150 }, "width": 8 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 50, "Y": 140 }, "endPosition": { "X": 70, "Y": 160 }, "width": 20 },
+        "pin": { "X": 60, "Y": 150 },
+        "firmness": 7,
+        "stimp": 11,
+        "complex": 6
+      }
+    },
+    {
+      "holeName": "TestName17",
+      "holeNumber": 17,
+      "holePar": 5,
+      "holeHandicap": 6,
+      "holeSize": { "width": 210, "length": 580 },
+      "holeYardage": 540,
+      "holeDirection": "SW",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 90, "Y": 90 }, "endPosition": { "X": 120, "Y": 530 }, "width": 32 }],
+        "firstCut": [],
+        "rough": 42,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 580 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 100, "Y": 300 }, "endPosition": { "X": 120, "Y": 320 }, "width": 14 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 110, "Y": 510 }, "endPosition": { "X": 140, "Y": 550 }, "width": 30 },
+        "pin": { "X": 120, "Y": 530 },
+        "firmness": 6,
+        "stimp": 10,
+        "complex": 8
+      }
+    },
+    {
+      "holeName": "TestName18",
+      "holeNumber": 18,
+      "holePar": 4,
+      "holeHandicap": 14,
+      "holeSize": { "width": 200, "length": 500 },
+      "holeYardage": 430,
+      "holeDirection": "N",
+      "holeLayout": {
+        "fairway": [{ "startPosition": { "X": 85, "Y": 150 }, "endPosition": { "X": 115, "Y": 475 }, "width": 30 }],
+        "firstCut": [],
+        "rough": 40,
+        "woods": [
+          { "startPosition": { "X": 0, "Y": 0 }, "endPosition": { "X": 20, "Y": 500 }, "width": 20 }
+        ],
+        "sand": [
+          { "startPosition": { "X": 55, "Y": 280 }, "endPosition": { "X": 75, "Y": 315 }, "width": 15 }
+        ],
+        "water": [],
+        "deepRough": []
+      },
+      "green": {
+        "greenLocation": { "startPosition": { "X": 85, "Y": 470 }, "endPosition": { "X": 115, "Y": 490 }, "width": 30 },
+        "pin": { "X": 90, "Y": 480 },
+        "firmness": 5,
+        "stimp": 10,
+        "complex": 10
+      }
+    }
+  ]
 }

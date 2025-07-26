@@ -28,6 +28,7 @@ namespace Golf.Simulator.App.Workers
             var team2 = _teamLoad.GetTeam(teamId2);
             var team1PlayerIds = team1.roster.ConvertAll(r => r.playerId);
             var team2PlayerIds = team2.roster.ConvertAll(r => r.playerId);
+
             var match = _matchCreate.CreateMatch(roundCount, days, teamId1, teamId2, team1PlayerIds, team2PlayerIds, matchType, courseId);
             for (int day = 1; day <= match.MatchDays; day++)
             {
@@ -44,6 +45,7 @@ namespace Golf.Simulator.App.Workers
                     match.MatchScores.Add(ms1);
                     Team1Score += round.PlayerScore;
                     roundCount++;
+                    _golfRound.ResetRound(round); // Reset the round for the next player
                     var round1 = _golfRound.PlayGolfRound(courseId, team2.roster[i].playerId, roundCount);
                     var ms2 = new MatchScore
                     {

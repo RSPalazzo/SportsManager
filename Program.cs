@@ -16,7 +16,10 @@ class Program
         CourseLoad courseLoad = new CourseLoad(); // You must assign a valid implementation here
         PlayerLoad playerLoad = new PlayerLoad(); // You must assign a valid implementation here
         TeamLoad teamLoad = new TeamLoad(); // You must assign a valid implementation here
-        IRoundWorker golfRound = new RoundWorker(golfRoundCreate, playerLoad, courseLoad, playerOverallSkill); // Use a concrete implementation instead of the interface
+        BagCreate bagDistanceCreate = new BagCreate(); // You must assign a valid implementation here
+        ShotExecutions shotExecutions = new ShotExecutions(); // You must assign a valid implementation here
+        IShotDecision shotDecision = new ShotDecision(); // You must assign a valid implementation here
+        IRoundWorker golfRound = new RoundWorker(golfRoundCreate, playerLoad, courseLoad, playerOverallSkill, shotDecision, bagDistanceCreate, shotExecutions); // Use a concrete implementation instead of the interface
         IMatchWorker matchWorker = new MatchWorker(matchCreate, golfRound, teamLoad); // You must assign a valid implementation here
         var _golfMatchSimulator = new GolfMatchSimulator(matchWorker);
 
